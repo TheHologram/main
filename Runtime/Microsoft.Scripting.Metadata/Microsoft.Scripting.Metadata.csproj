@@ -24,6 +24,10 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'v2Release|AnyCPU' ">
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UnityDebug|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UnityRelease|AnyCPU' ">
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="MemoryMapping.V4.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

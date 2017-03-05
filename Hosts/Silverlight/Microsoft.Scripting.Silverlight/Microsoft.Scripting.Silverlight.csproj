@@ -13,6 +13,8 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Silverlight4Release|AnyCPU' ">
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UnityRelease|AnyCPU'">
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\SilverlightVersion.cs">
       <Link>Properties\SilverlightVersion.cs</Link>

@@ -47,7 +47,7 @@ namespace Microsoft.Scripting.Utils {
         }
 #else
 
-#if WP75
+#if WP75 || !NETSTANDARD
         private static WeakDictionary<Exception, List<KeyValuePair<object, object>>> _exceptionData;
 #else
         private static ConditionalWeakTable<Exception, List<KeyValuePair<object, object>>> _exceptionData;
@@ -55,7 +55,7 @@ namespace Microsoft.Scripting.Utils {
 
         public static void SetData(this Exception e, object key, object value) {
             if (_exceptionData == null) {
-#if WP75
+#if WP75 || !NETSTANDARD
                 Interlocked.CompareExchange(ref _exceptionData, new WeakDictionary<Exception, List<KeyValuePair<object, object>>>(), null);
 #else
                 Interlocked.CompareExchange(ref _exceptionData, new ConditionalWeakTable<Exception, List<KeyValuePair<object, object>>>(), null);
