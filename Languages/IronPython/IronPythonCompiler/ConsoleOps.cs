@@ -11,6 +11,7 @@ namespace IronPythonCompiler {
         }
 
         public static void Error(bool fatal, string format, params object[] args) {
+#if FEATURE_FULL_CONSOLE
             ConsoleColor origForeground = Console.ForegroundColor;
             ConsoleColor origBackground = Console.BackgroundColor;
 
@@ -18,18 +19,25 @@ namespace IronPythonCompiler {
             Console.WriteLine("ERROR: " + format, args);
             Console.ForegroundColor = origForeground;
             Console.BackgroundColor = origBackground;
+#else
+            Console.WriteLine("ERROR: " + format, args);
+#endif
             if (fatal) {
                 Environment.Exit(-1);
             }
         }
 
         public static void Warning(string format, params object[] args) {
+#if FEATURE_FULL_CONSOLE
             ConsoleColor origForeground = Console.ForegroundColor;
             ConsoleColor origBackground = Console.BackgroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("WARNING: " + format, args);
             Console.ForegroundColor = origForeground;
             Console.BackgroundColor = origBackground;
+#else
+            Console.WriteLine("WARNING: " + format, args);
+#endif
         }
 
         public static void Info(string format, params object[] args) {

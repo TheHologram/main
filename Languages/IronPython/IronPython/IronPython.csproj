@@ -82,6 +82,7 @@
     <Compile Include="Runtime\Binding\PythonExtensionBinder.cs" />
     <Compile Include="Runtime\BuiltinPythonModule.cs" />
     <Compile Include="Runtime\ConstantDictionaryStorage.cs" />
+    <Compile Include="System\DefaultParameterValueAttribute.cs" />
     <Compile Include="Runtime\DictionaryTypeInfoAttribute.cs" />
     <Compile Include="Modules\imp.cs" />
     <Compile Include="Runtime\DebuggerDictionaryStorage.cs" />
@@ -468,6 +469,7 @@
     <Compile Include="..\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="System\WarningException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\site.py">

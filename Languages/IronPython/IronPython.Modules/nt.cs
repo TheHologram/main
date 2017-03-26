@@ -435,11 +435,11 @@ namespace IronPython.Modules {
                     // open it again w/ just read access.
                     fs = new FileStream(filename, fileMode, FileAccess.Write, FileShare.None);
                     fs.Dispose();
-                    fs = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, DefaultBufferSize, options);
+                    fs = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, DefaultBufferSize);
                 } else if (access == FileAccess.ReadWrite && fileMode == FileMode.Append) {
-                    fs = new FileStream(filename, FileMode.Append, FileAccess.Write, FileShare.ReadWrite, DefaultBufferSize, options);
+                    fs = new FileStream(filename, FileMode.Append, FileAccess.Write, FileShare.ReadWrite, DefaultBufferSize);
                 } else {
-                    fs = new FileStream(filename, fileMode, access, FileShare.ReadWrite, DefaultBufferSize, options);
+                    fs = new FileStream(filename, fileMode, access, FileShare.ReadWrite, DefaultBufferSize);
                 }
                 
                 string mode2;
@@ -1434,7 +1434,7 @@ namespace IronPython.Modules {
 
         public static PythonFile/*!*/ tmpfile(CodeContext/*!*/ context) {
             try {
-                FileStream sw = new FileStream(Path.GetTempFileName(), FileMode.Open, FileAccess.ReadWrite, FileShare.None, 4096, FileOptions.DeleteOnClose);
+                FileStream sw = new FileStream(Path.GetTempFileName(), FileMode.Open, FileAccess.ReadWrite, FileShare.None, 4096);
 
                 PythonFile res = PythonFile.Create(context, sw, sw.Name, "w+b");
                 return res;

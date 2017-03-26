@@ -19,6 +19,7 @@
     <BuildDir>$(BinDir)\$(BaseConfiguration)</BuildDir>
     <v2BuildDir>$(BinDir)\v2$(BaseConfiguration)</v2BuildDir>
     <v45BuildDir>$(BinDir)\v45$(BaseConfiguration)</v45BuildDir>
+    <UnityBuildDir>$(BinDir)\Unity$(BaseConfiguration)</UnityBuildDir>
     <Silverlight5BuildDir>$(BinDir)\Silverlight5$(BaseConfiguration)</Silverlight5BuildDir>
   </PropertyGroup>
   
@@ -34,6 +35,9 @@
     </BuildProject>
     <BuildProject Include="$(Solution)" Condition=" '$(Mono)' != 'true' ">
       <Properties>Configuration=Silverlight5$(BaseConfiguration)</Properties>
+    </BuildProject>
+    <BuildProject Include="$(Solution)" Condition=" '$(Mono)' != 'true' ">
+      <Properties>Configuration=Unity$(BaseConfiguration)</Properties>
     </BuildProject>
     <InstallerProject Include="$(BaseDir)\Package\msi\Python\IronPython.Installer.wixproj">
       <Properties>Configuration=$(BaseConfiguration);BaseInputPaths=$(StageDir);WixToolPath=$(UtilDir)\Wix35\;OutputPath=$(PackageDir);BuildDir=$(BuildDir)</Properties>
@@ -188,6 +192,13 @@
     <Copy SourceFiles="@(SilverlightDlrLibs->'$(Silverlight5BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Sl5" Condition="'$(OS)' == 'Windows_NT'" />
     <Copy SourceFiles="@(IronPythonLibs->'$(Silverlight5BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Sl5" Condition="'$(OS)' == 'Windows_NT'" />
     <Copy SourceFiles="@(IronPythonModules->'$(Silverlight5BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Sl5" Condition="'$(OS)' == 'Windows_NT'" />
+    
+    <!-- Unity -->
+    <Copy SourceFiles="@(DlrLibs->'$(UnityBuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(ClrDlrLibs->'$(UnityBuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(IronPythonLibs->'$(UnityBuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(IronPythonModules->'$(UnityBuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity" Condition="'$(OS)' == 'Windows_NT'"/>
+    
   </Target>
   
   <Target Name="NuGetPackage" DependsOnTargets="Stage" Condition="'$(OS)' == 'Windows_NT'">

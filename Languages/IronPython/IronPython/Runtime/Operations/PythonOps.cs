@@ -1798,7 +1798,7 @@ namespace IronPython.Runtime.Operations {
             pc.CallWithContext(context, dispHook, value);
         }
 
-#if FEATURE_FULL_CONSOLE
+#if FEATURE_FULL_CONSOLE || FEATURE_UNITY_CONSOLE
         public static void PrintException(CodeContext/*!*/ context, Exception/*!*/ exception, IConsole console) {
             PythonContext pc = PythonContext.GetContext(context);
             PythonTuple exInfo = GetExceptionInfoLocal(context, exception);

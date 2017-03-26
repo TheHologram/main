@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-#if FEATURE_FULL_CONSOLE
+#if FEATURE_FULL_CONSOLE || FEATURE_UNITY_CONSOLE
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

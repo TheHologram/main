@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-#if FEATURE_FULL_CONSOLE
+#if FEATURE_FULL_CONSOLE || FEATURE_UNITY_CONSOLE
 
 using System;
 using System.Collections.Generic;
@@ -137,7 +137,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
         protected virtual OptionsParser CreateOptionsParser() {
             return new OptionsParser<ConsoleOptions>();
         }
-
+#if !FEATURE_UNITY_CONSOLE
         protected virtual IConsole CreateConsole(ScriptEngine engine, CommandLine commandLine, ConsoleOptions options) {
             ContractUtils.RequiresNotNull(options, "options");
 
@@ -154,7 +154,13 @@ namespace Microsoft.Scripting.Hosting.Shell {
         private static IConsole CreateSuperConsole(CommandLine commandLine, bool isColorful) {
             return new SuperConsole(commandLine, isColorful);
         }
+#else
+        protected virtual IConsole CreateConsole(ScriptEngine engine, CommandLine commandLine, ConsoleOptions options) {
+            ContractUtils.RequiresNotNull(options, "options");
 
+            return new BasicConsole(options.ColorfulConsole);
+        }
+#endif
         #endregion
 
         /// <summary>

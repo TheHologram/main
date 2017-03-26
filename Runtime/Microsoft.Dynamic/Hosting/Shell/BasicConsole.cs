@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-#if FEATURE_FULL_CONSOLE
+#if FEATURE_FULL_CONSOLE || FEATURE_UNITY_CONSOLE
 
 using System;
 using System.IO;
@@ -54,11 +54,12 @@ namespace Microsoft.Scripting.Hosting.Shell {
         }
 
         public ConsoleCancelEventHandler ConsoleCancelEventHandler { get; set; }
+#if !FEATURE_UNITY_CONSOLE
         private ConsoleColor _promptColor;
         private ConsoleColor _outColor;
         private ConsoleColor _errorColor;
         private ConsoleColor _warningColor;
-
+#endif
         public BasicConsole(bool colorful) {            
             _output = System.Console.Out;
             _errorOutput = System.Console.Error;
@@ -76,7 +77,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
 #endif
                 }
             };
-
+#if !FEATURE_UNITY_CONSOLE
             Console.CancelKeyPress += delegate(object sender, ConsoleCancelEventArgs e) {
                 // Dispatch the registered handler
                 ConsoleCancelEventHandler handler = this.ConsoleCancelEventHandler;
@@ -84,12 +85,12 @@ namespace Microsoft.Scripting.Hosting.Shell {
                     this.ConsoleCancelEventHandler(sender, e);
                 }
             };
-
+#endif
             _ctrlCEvent = new AutoResetEvent(false);
         }
 
         private void SetupColors(bool colorful) {
-
+#if !FEATURE_UNITY_CONSOLE
             if (colorful) {
                 _promptColor = PickColor(ConsoleColor.Gray, ConsoleColor.White);
                 _outColor = PickColor(ConsoleColor.Cyan, ConsoleColor.White);
@@ -98,16 +99,18 @@ namespace Microsoft.Scripting.Hosting.Shell {
             } else {
                 _promptColor = _outColor = _errorColor = _warningColor = Console.ForegroundColor;
             }
+#endif
         }
 
         private static ConsoleColor PickColor(ConsoleColor best, ConsoleColor other) {
+#if !FEATURE_UNITY_CONSOLE
             best = IsDark(Console.BackgroundColor) ? MakeLight(best) : MakeDark(best);
             other = IsDark(Console.BackgroundColor) ? MakeLight(other) : MakeDark(other);
 
             if (Console.BackgroundColor != best) {
                 return best;
             }
-
+#endif
             return other;
         }
 
@@ -136,6 +139,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
         }
 
         protected void WriteColor(TextWriter output, string str, ConsoleColor c) {
+#if !FEATURE_UNITY_CONSOLE
             ConsoleColor origColor = Console.ForegroundColor;
             Console.ForegroundColor = c;
       
@@ -143,6 +147,10 @@ namespace Microsoft.Scripting.Hosting.Shell {
             output.Flush();
 
             Console.ForegroundColor = origColor;
+#else
+            output.Write(str);
+            output.Flush();
+#endif
         }
 
         #region IConsole Members
@@ -170,12 +178,27 @@ namespace Microsoft.Scripting.Hosting.Shell {
         }
 
         public virtual void Write(string text, Style style) {
+#if !FEATURE_UNITY_CONSOLE
             switch (style) {
                 case Style.Prompt: WriteColor(_output, text, _promptColor); break;
                 case Style.Out: WriteColor(_output, text, _outColor); break;
                 case Style.Error: WriteColor(_errorOutput, text, _errorColor); break;
                 case Style.Warning: WriteColor(_errorOutput, text, _warningColor); break;
             }
+#else
+            switch (style) {
+                case Style.Prompt:
+                case Style.Out: 
+                    _output.Write(text);
+                    _output.Flush();
+                    break;
+                case Style.Error: 
+                case Style.Warning: 
+                    _errorOutput.Write(text);
+                    _errorOutput.Flush();
+                    break;
+            }
+#endif
         }
 
         public void WriteLine(string text, Style style) {
@@ -186,9 +209,9 @@ namespace Microsoft.Scripting.Hosting.Shell {
             Write(Environment.NewLine, Style.Out);
         }
 
-        #endregion
+#endregion
 
-        #region IDisposable Members
+#region IDisposable Members
 
         public void Dispose() {
             if (_ctrlCEvent != null) {
@@ -198,7 +221,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
             GC.SuppressFinalize(this);
         }
 
-        #endregion
+#endregion
     }
 }
 

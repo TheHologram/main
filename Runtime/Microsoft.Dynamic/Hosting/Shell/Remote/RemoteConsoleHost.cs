@@ -13,7 +13,7 @@
  *
  * ***************************************************************************/
 
-#if FEATURE_REMOTING && FEATURE_FULL_CONSOLE
+#if FEATURE_REMOTING && (FEATURE_FULL_CONSOLE || FEATURE_UNITY_CONSOLE)
 
 using System;
 using System.Diagnostics;
@@ -43,7 +43,7 @@ namespace Microsoft.Scripting.Hosting.Shell.Remote {
         private AutoResetEvent _remoteOutputReceived = new AutoResetEvent(false);
         private ScriptScope _scriptScope;
 
-        #region Private methods
+#region Private methods
 
         private static string GetChannelName() {
             return "RemoteRuntime-" + Guid.NewGuid().ToString();
@@ -160,7 +160,7 @@ namespace Microsoft.Scripting.Hosting.Shell.Remote {
             }
         }
 
-        #endregion
+#endregion
 
         public override void Terminate(int exitCode) {
             if (CommandLine == null) {
@@ -228,7 +228,7 @@ namespace Microsoft.Scripting.Hosting.Shell.Remote {
             return ExitCode;
         }
 
-        #region IDisposable Members
+#region IDisposable Members
 
         public virtual void Dispose(bool disposing) {
             if (!disposing) {
@@ -264,7 +264,7 @@ namespace Microsoft.Scripting.Hosting.Shell.Remote {
             GC.SuppressFinalize(this);
         }
 
-        #endregion
+#endregion
     }
 
     [Serializable]

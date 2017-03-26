@@ -18,7 +18,9 @@
 using System;
 using System.ComponentModel;
 using System.IO;
+#if FEATURE_PIPING
 using System.IO.Pipes;
+#endif
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 
@@ -39,7 +41,7 @@ namespace IronPython.Modules {
     public class PythonMsvcrt {
         public const string __doc__ = "Functions from the Microsoft Visual C Runtime.";
 
-        #region Public API
+#region Public API
 
         [Documentation(@"heapmin() -> None
 
@@ -61,7 +63,8 @@ to os.fdopen() to create a file object.
 ")]
 
         public static int open_osfhandle(CodeContext context, BigInteger os_handle, int arg1) {
-            FileStream stream = new FileStream(new SafeFileHandle(new IntPtr((long)os_handle), true), FileAccess.ReadWrite);
+            //FileStream stream = new FileStream(new SafeFileHandle(new IntPtr((long)os_handle), true), FileAccess.ReadWrite);
+            FileStream stream = new FileStream(new IntPtr((long)os_handle), FileAccess.ReadWrite);
             return context.LanguageContext.FileManager.AddToStrongMapping(stream);
         }
 
@@ -170,9 +173,9 @@ Wide char variant of ungetch(), accepting a Unicode value.")]
             }
         }
 
-        #endregion
+#endregion
 
-        #region P/Invoke Declarations
+#region P/Invoke Declarations
 
         private static int EOF = -1;
         private static ushort WEOF = 0xFFFF;
@@ -206,7 +209,7 @@ Wide char variant of ungetch(), accepting a Unicode value.")]
 
         [DllImport("msvcr100", SetLastError=true, CallingConvention=CallingConvention.Cdecl)]
         private static extern ushort _ungetwch(ushort c);
-        #endregion
+#endregion
     }
 }
 #endif
