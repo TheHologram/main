@@ -1,4 +1,5 @@
-﻿namespace System.ComponentModel
+﻿#if FEATURE_UNITY4
+namespace System.ComponentModel
 {
     using System;
     using System.Runtime.Serialization;
@@ -67,3 +68,4 @@
         }
     }
 }
+#endif

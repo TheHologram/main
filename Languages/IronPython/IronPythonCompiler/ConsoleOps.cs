@@ -11,7 +11,7 @@ namespace IronPythonCompiler {
         }
 
         public static void Error(bool fatal, string format, params object[] args) {
-#if FEATURE_FULL_CONSOLE
+#if FEATURE_FULL_CONSOLE && !FEATURE_UNITY4
             ConsoleColor origForeground = Console.ForegroundColor;
             ConsoleColor origBackground = Console.BackgroundColor;
 
@@ -28,7 +28,7 @@ namespace IronPythonCompiler {
         }
 
         public static void Warning(string format, params object[] args) {
-#if FEATURE_FULL_CONSOLE
+#if FEATURE_FULL_CONSOLE && !FEATURE_UNITY4
             ConsoleColor origForeground = Console.ForegroundColor;
             ConsoleColor origBackground = Console.BackgroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;

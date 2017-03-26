@@ -17,7 +17,9 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'v2Release|AnyCPU' ">
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UnityRelease|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Unity4Release|AnyCPU'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Unity5Release|AnyCPU'">
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />

@@ -13,7 +13,7 @@
  *
  * ***************************************************************************/
 
-#if FEATURE_REMOTING && (FEATURE_FULL_CONSOLE || FEATURE_UNITY_CONSOLE)
+#if FEATURE_REMOTING && FEATURE_FULL_CONSOLE
 
 using System;
 using System.Diagnostics;
@@ -53,6 +53,7 @@ namespace Microsoft.Scripting.Hosting.Shell.Remote {
                 Console.WriteLine(RemoteCommandDispatcher.OutputCompleteMarker);
 
                 return result;
+#if FEATURE_EXCEPTION_STATE
             } catch (ThreadAbortException tae) {
                 KeyboardInterruptException pki = tae.ExceptionState as KeyboardInterruptException;
                 if (pki != null) {
@@ -65,6 +66,7 @@ namespace Microsoft.Scripting.Hosting.Shell.Remote {
                 } else {
                     throw;
                 }
+#endif
             } finally {
                 _executingThread = null;
             }

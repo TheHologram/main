@@ -26,7 +26,8 @@
     <ConfigurationFlavor Condition="'$(Configuration)' == 'Silverlight4Release'">Release</ConfigurationFlavor>
     <ConfigurationFlavor Condition="'$(Configuration)' == 'Silverlight5Release'">Release</ConfigurationFlavor>
     <ConfigurationFlavor Condition="'$(Configuration)' == 'AndroidRelease'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'UnityRelease'">Release</ConfigurationFlavor>
+    <ConfigurationFlavor Condition="'$(Configuration)' == 'Unity4Release'">Release</ConfigurationFlavor>
+    <ConfigurationFlavor Condition="'$(Configuration)' == 'Unity5Release'">Release</ConfigurationFlavor>
 
     <ReferencedPlatform>V4</ReferencedPlatform>
     <ReferencedPlatform Condition="'$(Configuration)' == 'v2Release' or '$(Configuration)' == 'v2Debug'">V2</ReferencedPlatform>
@@ -36,7 +37,8 @@
     <ReferencedPlatform Condition="'$(Configuration)' == 'Silverlight4Release' or '$(Configuration)' == 'Silverlight4Debug'">Silverlight4</ReferencedPlatform>
     <ReferencedPlatform Condition="'$(Configuration)' == 'Silverlight5Release' or '$(Configuration)' == 'Silverlight5Debug'">Silverlight5</ReferencedPlatform>
     <ReferencedPlatform Condition="'$(Configuration)' == 'AndroidRelease' or '$(Configuration)' == 'AndroidDebug'">Android</ReferencedPlatform>
-    <ReferencedPlatform Condition="'$(Configuration)' == 'UnityRelease' or '$(Configuration)' == 'UnityDebug'">Unity</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity4Release' or '$(Configuration)' == 'Unity4Debug'">Unity4</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity5Release' or '$(Configuration)' == 'Unity5Debug'">Unity5</ReferencedPlatform>
   </PropertyGroup>
 
   <!-- Signing -->
@@ -66,15 +68,27 @@
     <FeatureCoreDlr>false</FeatureCoreDlr>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(ReferencedPlatform)' == 'Unity'">
+  <PropertyGroup Condition="'$(ReferencedPlatform)' == 'Unity4'">
     <FrameworkReferences Condition="'$(FrameworkReferences)' == ''">$(SolutionDir)..\Util\References\MonoUnity\2.0.5.0</FrameworkReferences>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <Features>FEATURE_CUSTOM_MODIFIERS;FEATURE_NATIVE;FEATURE_DEFAULT_PARAMETER_VALUE;FEATURE_CRYPTOGRAPHY;FEATURE_SYNC_SOCKETS;FEATURE_ASSEMBLY_RESOLVE;FEATURE_CUSTOM_TYPE_DESCRIPTOR;FEATURE_ENCODING;FEATURE_DBNULL;FEATURE_FILESYSTEM;FEATURE_THREAD;FEATURE_STACK_TRACE;FEATURE_TYPECONVERTER;FEATURE_PDBEMIT;FEATURE_COM;FEATURE_UNITY_CONSOLE;FEATURE_BASIC_CONSOLE;FEATURE_SERIALIZATION;FEATURE_REFEMIT;FEATURE_COMPRESSION;FEATURE_WARNING_EXCEPTION;FEATURE_APTCA;FEATURE_WIN32EXCEPTION;FEATURE_ASSEMBLY_LOCATION;FEATURE_ENUM_NAMES_VALUES;FEATURE_OS_SERVICEPACK;FEATURE_APPLICATIONEXCEPTION;FEATURE_STOPWATCH;FEATURE_APARTMENTSTATE;FEATURE_GETINVALIDFILENAMECHARS;FEATURE_LOADWITHPARTIALNAME;FEATURE_DRIVENOTFOUNDEXCEPTION;FEATURE_ASSEMBLY_CODEBASE;FEATURE_FULL_NET;FEATURE_FULL_CRYPTO;FEATURE_ICLONEABLE;FEATURE_ANSICP;FEATURE_TIMEZONE;FEATURE_SORTKEY</Features>
+    <Features>FEATURE_CUSTOM_MODIFIERS;FEATURE_NATIVE;FEATURE_DEFAULT_PARAMETER_VALUE;FEATURE_CRYPTOGRAPHY;FEATURE_SYNC_SOCKETS;FEATURE_ASSEMBLY_RESOLVE;FEATURE_CUSTOM_TYPE_DESCRIPTOR;FEATURE_ENCODING;FEATURE_DBNULL;FEATURE_FILESYSTEM;FEATURE_THREAD;FEATURE_STACK_TRACE;FEATURE_TYPECONVERTER;FEATURE_PDBEMIT;FEATURE_COM;FEATURE_FULL_CONSOLE;FEATURE_BASIC_CONSOLE;FEATURE_SERIALIZATION;FEATURE_REFEMIT;FEATURE_COMPRESSION;FEATURE_WARNING_EXCEPTION;FEATURE_APTCA;FEATURE_WIN32EXCEPTION;FEATURE_ASSEMBLY_LOCATION;FEATURE_ENUM_NAMES_VALUES;FEATURE_OS_SERVICEPACK;FEATURE_APPLICATIONEXCEPTION;FEATURE_STOPWATCH;FEATURE_APARTMENTSTATE;FEATURE_GETINVALIDFILENAMECHARS;FEATURE_LOADWITHPARTIALNAME;FEATURE_DRIVENOTFOUNDEXCEPTION;FEATURE_ASSEMBLY_CODEBASE;FEATURE_FULL_NET;FEATURE_FULL_CRYPTO;FEATURE_ICLONEABLE;FEATURE_ANSICP;FEATURE_TIMEZONE;FEATURE_SORTKEY;FEATURE_UNITY4;FEATURE_REMOTING</Features>
     <PlatformSymbols>CLR2</PlatformSymbols>
     <IsSilverlight>false</IsSilverlight>
     <IsFullFramework>true</IsFullFramework>
     <FeatureCoreDlr>false</FeatureCoreDlr>
   </PropertyGroup>
+  
+
+  <PropertyGroup Condition="'$(ReferencedPlatform)' == 'Unity5'">
+    <FrameworkReferences Condition="'$(FrameworkReferences)' == ''">$(SolutionDir)..\Util\References\MonoUnity\2.0.0.0</FrameworkReferences>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <Features>FEATURE_CUSTOM_MODIFIERS;FEATURE_NATIVE;FEATURE_EXCEPTION_STATE;FEATURE_DEFAULT_PARAMETER_VALUE;FEATURE_CRYPTOGRAPHY;FEATURE_SYNC_SOCKETS;FEATURE_ASSEMBLY_RESOLVE;FEATURE_CUSTOM_TYPE_DESCRIPTOR;FEATURE_ENCODING;FEATURE_DBNULL;FEATURE_FILESYSTEM;FEATURE_THREAD;FEATURE_PROCESS;FEATURE_PIPES;FEATURE_STACK_TRACE;FEATURE_TYPECONVERTER;FEATURE_PDBEMIT;FEATURE_COM;FEATURE_FULL_CONSOLE;FEATURE_BASIC_CONSOLE;FEATURE_SERIALIZATION;FEATURE_CONFIGURATION;FEATURE_REFEMIT;FEATURE_CODEDOM;FEATURE_COMPRESSION;FEATURE_WARNING_EXCEPTION;FEATURE_APTCA;FEATURE_WIN32EXCEPTION;FEATURE_ASSEMBLY_LOCATION;FEATURE_ENUM_NAMES_VALUES;FEATURE_OS_SERVICEPACK;FEATURE_APPLICATIONEXCEPTION;FEATURE_STOPWATCH;FEATURE_APARTMENTSTATE;FEATURE_GETINVALIDFILENAMECHARS;FEATURE_LOADWITHPARTIALNAME;FEATURE_DRIVENOTFOUNDEXCEPTION;FEATURE_ASSEMBLY_CODEBASE;FEATURE_FULL_NET;FEATURE_FULL_CRYPTO;FEATURE_ICLONEABLE;FEATURE_ANSICP;FEATURE_TIMEZONE;FEATURE_SORTKEY;FEATURE_UNITY5;FEATURE_REMOTING</Features>
+    <PlatformSymbols>CLR2</PlatformSymbols>
+    <IsSilverlight>false</IsSilverlight>
+    <IsFullFramework>true</IsFullFramework>
+    <FeatureCoreDlr>false</FeatureCoreDlr>
+  </PropertyGroup>
+  
   
   <PropertyGroup Condition="'$(ReferencedPlatform)' == 'V4'">
     <WpfReferences Condition="'$(WpfReferences)' == '' And '$(Mono)' != 'true'">$(SolutionDir)..\Util\References\WPF\4.0</WpfReferences>
@@ -269,11 +283,11 @@
       <HintPath>$(FrameworkReferences)\Mono.Security.dll</HintPath>
       <Private>False</Private>
     </Reference>
-  </ItemGroup>
-  <PropertyGroup Condition="'$(ReferencedPlatform)' == 'Unity'">
+  </ItemGroup> 
+  <PropertyGroup Condition="'$(ReferencedPlatform)' == 'Unity4'">
     <FrameworkPathOverride>$(FrameworkReferences)</FrameworkPathOverride>
   </PropertyGroup>
-  <ItemGroup Condition="'$(ReferencedPlatform)' == 'Unity'">
+  <ItemGroup Condition="'$(ReferencedPlatform)' == 'Unity4'">
     <Reference Include="mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
       <SpecificVersion>True</SpecificVersion>
       <HintPath>$(FrameworkReferences)\mscorlib.dll</HintPath>
@@ -302,6 +316,44 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
+  <PropertyGroup Condition="'$(ReferencedPlatform)' == 'Unity5'">
+    <FrameworkPathOverride>$(FrameworkReferences)</FrameworkPathOverride>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(ReferencedPlatform)' == 'Unity5'">
+    <Reference Include="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(FrameworkReferences)\mscorlib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(FrameworkReferences)\System.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(FrameworkReferences)\System.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(FrameworkReferences)\System.Security.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!--
+    <Reference Include="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(FrameworkReferences)\Mono.Security.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    -->
+    <Reference Include="System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(FrameworkReferences)\System.Xml.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  
   <ItemGroup Condition="'$(ReferencedPlatform)' == 'Silverlight4'">
     <Reference Include="mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
       <SpecificVersion>True</SpecificVersion>

@@ -122,7 +122,7 @@ namespace Microsoft.Scripting.Runtime {
             if (_inputStream == null) {
                 lock (_mutex) {
                     if (_inputStream == null) {
-#if FEATURE_FULL_CONSOLE || FEATURE_UNITY_CONSOLE
+#if FEATURE_FULL_CONSOLE
                         _inputStream = ConsoleInputStream.Instance;
                         _inputEncoding = Console.InputEncoding;
                         _inputReader = Console.In;
@@ -144,7 +144,7 @@ namespace Microsoft.Scripting.Runtime {
             if (_outputStream == null) {
                 lock (_mutex) {
                     if (_outputStream == null) {
-#if FEATURE_FULL_CONSOLE || FEATURE_UNITY_CONSOLE
+#if FEATURE_FULL_CONSOLE
                         _outputStream = Console.OpenStandardOutput();
                         _outputWriter = Console.Out;
 #elif FEATURE_BASIC_CONSOLE
@@ -163,7 +163,7 @@ namespace Microsoft.Scripting.Runtime {
             if (_errorStream == null) {
                 lock (_mutex) {
                     if (_errorStream == null) {
-#if FEATURE_FULL_CONSOLE || FEATURE_UNITY_CONSOLE
+#if FEATURE_FULL_CONSOLE
                         _errorStream = Console.OpenStandardError();
                         _errorWriter = Console.Error;
 #elif FEATURE_BASIC_CONSOLE

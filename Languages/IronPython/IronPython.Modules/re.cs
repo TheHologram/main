@@ -234,7 +234,7 @@ namespace IronPython.Modules {
                 try {
                     flags |= OptionToFlags(_pre.Options);
                     RegexOptions opts = FlagsToOption(flags);
-#if SILVERLIGHT || FEATURE_UNITY_CONSOLE
+#if SILVERLIGHT || FEATURE_UNITY4
                     this._re = new Regex(_pre.Pattern, opts);
 #else
                     this._re = new Regex(_pre.Pattern, opts | (compiled ? RegexOptions.Compiled : RegexOptions.None));
@@ -845,7 +845,7 @@ namespace IronPython.Modules {
             PatternKey key = new PatternKey(strPattern, flags);
             lock (_cachedPatterns) {
                 if (_cachedPatterns.TryGetValue(new PatternKey(strPattern, flags), out res)) {
-#if SILVERLIGHT || FEATURE_UNITY_CONSOLE
+#if SILVERLIGHT || FEATURE_UNITY4
                     return res;
 #else
                     if ( ! compiled || (res._re.Options & RegexOptions.Compiled) == RegexOptions.Compiled) {

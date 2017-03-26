@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-#if FEATURE_FULL_CONSOLE
+#if FEATURE_FULL_CONSOLE && !FEATURE_UNITY4
 
 using System;
 using System.Collections;

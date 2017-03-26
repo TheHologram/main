@@ -13,7 +13,7 @@
  *
  * ***************************************************************************/
 
-#if FEATURE_REMOTING && (FEATURE_FULL_CONSOLE || FEATURE_UNITY_CONSOLE)
+#if FEATURE_REMOTING && FEATURE_FULL_CONSOLE
 
 using System;
 using System.Diagnostics;

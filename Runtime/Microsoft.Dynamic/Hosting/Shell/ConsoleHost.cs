@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-#if FEATURE_FULL_CONSOLE || FEATURE_UNITY_CONSOLE
+#if FEATURE_FULL_CONSOLE
 
 using System;
 using System.Collections.Generic;
@@ -137,7 +137,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
         protected virtual OptionsParser CreateOptionsParser() {
             return new OptionsParser<ConsoleOptions>();
         }
-#if !FEATURE_UNITY_CONSOLE
+#if !FEATURE_UNITY4
         protected virtual IConsole CreateConsole(ScriptEngine engine, CommandLine commandLine, ConsoleOptions options) {
             ContractUtils.RequiresNotNull(options, "options");
 

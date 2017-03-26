@@ -63,8 +63,11 @@ to os.fdopen() to create a file object.
 ")]
 
         public static int open_osfhandle(CodeContext context, BigInteger os_handle, int arg1) {
-            //FileStream stream = new FileStream(new SafeFileHandle(new IntPtr((long)os_handle), true), FileAccess.ReadWrite);
+#if FEATURE_UNITY4
             FileStream stream = new FileStream(new IntPtr((long)os_handle), FileAccess.ReadWrite);
+#else
+            FileStream stream = new FileStream(new SafeFileHandle(new IntPtr((long)os_handle), true), FileAccess.ReadWrite);
+#endif
             return context.LanguageContext.FileManager.AddToStrongMapping(stream);
         }
 

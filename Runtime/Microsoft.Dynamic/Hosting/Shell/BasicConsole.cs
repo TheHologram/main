@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-#if FEATURE_FULL_CONSOLE || FEATURE_UNITY_CONSOLE
+#if FEATURE_FULL_CONSOLE
 
 using System;
 using System.IO;
@@ -54,7 +54,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
         }
 
         public ConsoleCancelEventHandler ConsoleCancelEventHandler { get; set; }
-#if !FEATURE_UNITY_CONSOLE
+#if !FEATURE_UNITY4
         private ConsoleColor _promptColor;
         private ConsoleColor _outColor;
         private ConsoleColor _errorColor;
@@ -77,7 +77,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
 #endif
                 }
             };
-#if !FEATURE_UNITY_CONSOLE
+#if !FEATURE_UNITY4
             Console.CancelKeyPress += delegate(object sender, ConsoleCancelEventArgs e) {
                 // Dispatch the registered handler
                 ConsoleCancelEventHandler handler = this.ConsoleCancelEventHandler;
@@ -90,7 +90,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
         }
 
         private void SetupColors(bool colorful) {
-#if !FEATURE_UNITY_CONSOLE
+#if !FEATURE_UNITY4
             if (colorful) {
                 _promptColor = PickColor(ConsoleColor.Gray, ConsoleColor.White);
                 _outColor = PickColor(ConsoleColor.Cyan, ConsoleColor.White);
@@ -103,7 +103,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
         }
 
         private static ConsoleColor PickColor(ConsoleColor best, ConsoleColor other) {
-#if !FEATURE_UNITY_CONSOLE
+#if !FEATURE_UNITY4
             best = IsDark(Console.BackgroundColor) ? MakeLight(best) : MakeDark(best);
             other = IsDark(Console.BackgroundColor) ? MakeLight(other) : MakeDark(other);
 
@@ -139,7 +139,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
         }
 
         protected void WriteColor(TextWriter output, string str, ConsoleColor c) {
-#if !FEATURE_UNITY_CONSOLE
+#if !FEATURE_UNITY4
             ConsoleColor origColor = Console.ForegroundColor;
             Console.ForegroundColor = c;
       
@@ -178,7 +178,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
         }
 
         public virtual void Write(string text, Style style) {
-#if !FEATURE_UNITY_CONSOLE
+#if !FEATURE_UNITY4
             switch (style) {
                 case Style.Prompt: WriteColor(_output, text, _promptColor); break;
                 case Style.Out: WriteColor(_output, text, _outColor); break;

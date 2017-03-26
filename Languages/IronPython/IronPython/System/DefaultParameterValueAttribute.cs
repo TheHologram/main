@@ -1,4 +1,5 @@
-﻿namespace System.Runtime.InteropServices
+﻿#if FEATURE_UNITY4
+namespace System.Runtime.InteropServices
 {
     using System;
 
@@ -21,3 +22,4 @@
         }
     }
 }
+#endif

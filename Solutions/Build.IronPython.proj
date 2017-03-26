@@ -19,7 +19,8 @@
     <BuildDir>$(BinDir)\$(BaseConfiguration)</BuildDir>
     <v2BuildDir>$(BinDir)\v2$(BaseConfiguration)</v2BuildDir>
     <v45BuildDir>$(BinDir)\v45$(BaseConfiguration)</v45BuildDir>
-    <UnityBuildDir>$(BinDir)\Unity$(BaseConfiguration)</UnityBuildDir>
+    <Unity4BuildDir>$(BinDir)\Unity4$(BaseConfiguration)</Unity4BuildDir>
+    <Unity5BuildDir>$(BinDir)\Unity5$(BaseConfiguration)</Unity5BuildDir>
     <Silverlight5BuildDir>$(BinDir)\Silverlight5$(BaseConfiguration)</Silverlight5BuildDir>
   </PropertyGroup>
   
@@ -37,7 +38,10 @@
       <Properties>Configuration=Silverlight5$(BaseConfiguration)</Properties>
     </BuildProject>
     <BuildProject Include="$(Solution)" Condition=" '$(Mono)' != 'true' ">
-      <Properties>Configuration=Unity$(BaseConfiguration)</Properties>
+      <Properties>Configuration=Unity4$(BaseConfiguration)</Properties>
+    </BuildProject>
+    <BuildProject Include="$(Solution)" Condition=" '$(Mono)' != 'true' ">
+      <Properties>Configuration=Unity5$(BaseConfiguration)</Properties>
     </BuildProject>
     <InstallerProject Include="$(BaseDir)\Package\msi\Python\IronPython.Installer.wixproj">
       <Properties>Configuration=$(BaseConfiguration);BaseInputPaths=$(StageDir);WixToolPath=$(UtilDir)\Wix35\;OutputPath=$(PackageDir);BuildDir=$(BuildDir)</Properties>
@@ -193,11 +197,17 @@
     <Copy SourceFiles="@(IronPythonLibs->'$(Silverlight5BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Sl5" Condition="'$(OS)' == 'Windows_NT'" />
     <Copy SourceFiles="@(IronPythonModules->'$(Silverlight5BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Sl5" Condition="'$(OS)' == 'Windows_NT'" />
     
-    <!-- Unity -->
-    <Copy SourceFiles="@(DlrLibs->'$(UnityBuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity" Condition="'$(OS)' == 'Windows_NT'"/>
-    <Copy SourceFiles="@(ClrDlrLibs->'$(UnityBuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity" Condition="'$(OS)' == 'Windows_NT'" />
-    <Copy SourceFiles="@(IronPythonLibs->'$(UnityBuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity" Condition="'$(OS)' == 'Windows_NT'"/>
-    <Copy SourceFiles="@(IronPythonModules->'$(UnityBuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity" Condition="'$(OS)' == 'Windows_NT'"/>
+    <!-- Unity 4 -->
+    <Copy SourceFiles="@(DlrLibs->'$(Unity4BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity4" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(ClrDlrLibs->'$(Unity4BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity4" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(IronPythonLibs->'$(Unity4BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity4" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(IronPythonModules->'$(Unity4BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity4" Condition="'$(OS)' == 'Windows_NT'"/>
+
+    <!-- Unity 5 -->
+    <Copy SourceFiles="@(DlrLibs->'$(Unity5BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity5" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(ClrDlrLibs->'$(Unity5BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity5" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(IronPythonLibs->'$(Unity5BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity5" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(IronPythonModules->'$(Unity5BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity5" Condition="'$(OS)' == 'Windows_NT'"/>
     
   </Target>
   

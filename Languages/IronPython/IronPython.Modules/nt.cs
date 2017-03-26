@@ -428,6 +428,7 @@ namespace IronPython.Modules {
                 FileAccess access = FileAccessFromFlags(flag);
                 FileOptions options = FileOptionsFromFlags(flag);
                 Stream fs;
+#if FEATURE_UNITY4
                 if (Environment.OSVersion.Platform == PlatformID.Win32NT && (String.Compare(filename, "nul", true) == 0)) {
                     fs = Stream.Null;
                 } else if (access == FileAccess.Read && (fileMode == FileMode.CreateNew || fileMode == FileMode.Create || fileMode == FileMode.Append)) {
@@ -441,7 +442,21 @@ namespace IronPython.Modules {
                 } else {
                     fs = new FileStream(filename, fileMode, access, FileShare.ReadWrite, DefaultBufferSize);
                 }
-                
+#else
+                if (Environment.OSVersion.Platform == PlatformID.Win32NT && (String.Compare(filename, "nul", true) == 0)) {
+                    fs = Stream.Null;
+                } else if (access == FileAccess.Read && (fileMode == FileMode.CreateNew || fileMode == FileMode.Create || fileMode == FileMode.Append)) {
+                    // .NET doesn't allow Create/CreateNew w/ access == Read, so create the file, then close it, then
+                    // open it again w/ just read access.
+                    fs = new FileStream(filename, fileMode, FileAccess.Write, FileShare.None);
+                    fs.Dispose();
+                    fs = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, DefaultBufferSize, options);
+                } else if (access == FileAccess.ReadWrite && fileMode == FileMode.Append) {
+                    fs = new FileStream(filename, FileMode.Append, FileAccess.Write, FileShare.ReadWrite, DefaultBufferSize, options);
+                } else {
+                    fs = new FileStream(filename, fileMode, access, FileShare.ReadWrite, DefaultBufferSize, options);
+                }
+#endif                
                 string mode2;
                 if (fs.CanRead && fs.CanWrite) mode2 = "w+";
                 else if (fs.CanWrite) mode2 = "w";

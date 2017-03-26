@@ -13,7 +13,7 @@
  *
  * ***************************************************************************/
 
-#if FEATURE_UNITY_CONSOLE || SILVERLIGHT // only needed in SL, see SharedIO
+#if FEATURE_UNITY4 || SILVERLIGHT // only needed in SL, see SharedIO
 
 using System;
 using System.IO;

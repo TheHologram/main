@@ -60,7 +60,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
             get { return _platform; }
         }
 
-#if FEATURE_FULL_CONSOLE || FEATURE_UNITY_CONSOLE
+#if FEATURE_FULL_CONSOLE
         public abstract ConsoleOptions CommonConsoleOptions { 
             get; 
         }
@@ -142,7 +142,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
         public abstract void GetHelp(out string commandLine, out string[,] options, out string[,] environmentVariables, out string comments);
     }
 
-#if FEATURE_FULL_CONSOLE || FEATURE_UNITY_CONSOLE
+#if FEATURE_FULL_CONSOLE
     public class OptionsParser<TConsoleOptions> : OptionsParser
         where TConsoleOptions : ConsoleOptions, new() {
        
