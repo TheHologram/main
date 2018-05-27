@@ -294,10 +294,10 @@ namespace Microsoft.Scripting.Hosting.Shell {
                 { "-X:SaveAssemblies",           "Save generated assemblies [debug only]" },
                 { "-X:TrackPerformance",         "Track performance sensitive areas [debug only]" },
                 { "-X:PerfStats",                "Print performance stats when the process exists [debug only]" },
+#endif
 #if FEATURE_REMOTING
                 { Remote.RemoteRuntimeServer.RemoteRuntimeArg + " <channel_name>", 
                                                  "Start a remoting server for a remote console session." },
-#endif
 #endif
            };
 

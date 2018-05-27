@@ -11,7 +11,9 @@ namespace IronPython.Modules {
         internal class SimpleSignalState : PythonSignalState {
             public SimpleSignalState(PythonContext pc)
                 : base(pc) {
+#if !FEATURE_NO_COLOR_CONSOLE
                 Console.CancelKeyPress += new ConsoleCancelEventHandler(Console_CancelKeyPress);
+#endif
             }
 
             void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e) {

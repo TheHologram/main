@@ -21,6 +21,7 @@
     <v45BuildDir>$(BinDir)\v45$(BaseConfiguration)</v45BuildDir>
     <Unity4BuildDir>$(BinDir)\Unity4$(BaseConfiguration)</Unity4BuildDir>
     <Unity5BuildDir>$(BinDir)\Unity5$(BaseConfiguration)</Unity5BuildDir>
+    <Unity2017BuildDir>$(BinDir)\Unity2017$(BaseConfiguration)</Unity2017BuildDir>
     <Silverlight5BuildDir>$(BinDir)\Silverlight5$(BaseConfiguration)</Silverlight5BuildDir>
   </PropertyGroup>
   
@@ -208,6 +209,12 @@
     <Copy SourceFiles="@(ClrDlrLibs->'$(Unity5BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity5" Condition="'$(OS)' == 'Windows_NT'" />
     <Copy SourceFiles="@(IronPythonLibs->'$(Unity5BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity5" Condition="'$(OS)' == 'Windows_NT'"/>
     <Copy SourceFiles="@(IronPythonModules->'$(Unity5BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity5" Condition="'$(OS)' == 'Windows_NT'"/>
+    
+    <!-- Unity2017 -->
+    <Copy SourceFiles="@(DlrLibs->'$(Unity2017BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2017" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(ClrDlrLibs->'$(Unity2017BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2017" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(IronPythonLibs->'$(Unity2017BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2017" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(IronPythonModules->'$(Unity2017BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2017" Condition="'$(OS)' == 'Windows_NT'"/>
     
   </Target>
   

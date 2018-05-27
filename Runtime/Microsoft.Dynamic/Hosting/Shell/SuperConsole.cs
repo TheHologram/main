@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-#if FEATURE_FULL_CONSOLE && !FEATURE_UNITY4
+#if FEATURE_FULL_CONSOLE && !FEATURE_NO_COLOR_CONSOLE
 
 using System;
 using System.Collections;
@@ -217,6 +217,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
             : base(colorful) {
             ContractUtils.RequiresNotNull(commandLine, "commandLine");
             _commandLine = commandLine;
+            _cursor = new Cursor();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]

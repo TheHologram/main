@@ -358,7 +358,7 @@ namespace IronPython.Runtime.Types {
         }
 
         internal static string CreateAutoDoc(MethodBase info, string name, int endParamSkip, bool includeSelf) {
-#if FEATURE_FULL_CONSOLE && !FEATURE_UNITY4
+#if FEATURE_FULL_CONSOLE && !FEATURE_NO_COLOR_CONSOLE
             int lineWidth;
             try {
                 lineWidth = Console.WindowWidth - 30;

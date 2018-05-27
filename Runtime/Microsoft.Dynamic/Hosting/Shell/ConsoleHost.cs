@@ -137,7 +137,7 @@ namespace Microsoft.Scripting.Hosting.Shell {
         protected virtual OptionsParser CreateOptionsParser() {
             return new OptionsParser<ConsoleOptions>();
         }
-#if !FEATURE_UNITY4
+#if !FEATURE_NO_COLOR_CONSOLE
         protected virtual IConsole CreateConsole(ScriptEngine engine, CommandLine commandLine, ConsoleOptions options) {
             ContractUtils.RequiresNotNull(options, "options");
 

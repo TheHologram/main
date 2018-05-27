@@ -1,16 +1,14 @@
-﻿#if FEATURE_UNITY4
+﻿#if FEATURE_UNITY4 || FEATURE_WARNINGEXCEPTION_STUB
+
 namespace System.ComponentModel
 {
     using System;
-    using System.Runtime.Serialization;
-    using System.Security.Permissions;
+    using Runtime.Serialization;
+    using Security.Permissions;
 
     [Serializable, HostProtection(SecurityAction.LinkDemand, SharedState = true)]
     public class WarningException : SystemException
     {
-        private readonly string helpTopic;
-        private readonly string helpUrl;
-
         public WarningException() : this(null, null, null)
         {
         }
@@ -21,8 +19,8 @@ namespace System.ComponentModel
 
         protected WarningException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
-            this.helpUrl = (string)info.GetValue("helpUrl", typeof(string));
-            this.helpTopic = (string)info.GetValue("helpTopic", typeof(string));
+            HelpUrl = (string) info.GetValue("helpUrl", typeof(string));
+            HelpTopic = (string) info.GetValue("helpTopic", typeof(string));
         }
 
         public WarningException(string message, Exception innerException) : base(message, innerException)
@@ -35,37 +33,25 @@ namespace System.ComponentModel
 
         public WarningException(string message, string helpUrl, string helpTopic) : base(message)
         {
-            this.helpUrl = helpUrl;
-            this.helpTopic = helpTopic;
+            HelpUrl = helpUrl;
+            HelpTopic = helpTopic;
         }
 
         [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            if (info == null)
-            {
-                throw new ArgumentNullException("info");
+            if (info == null) {
+                throw new ArgumentNullException(nameof(info));
             }
-            info.AddValue("helpUrl", this.helpUrl);
-            info.AddValue("helpTopic", this.helpTopic);
+            info.AddValue("helpUrl", HelpUrl);
+            info.AddValue("helpTopic", HelpTopic);
             base.GetObjectData(info, context);
         }
 
-        public string HelpTopic
-        {
-            get
-            {
-                return this.helpTopic;
-            }
-        }
+        public string HelpTopic { get; }
 
-        public string HelpUrl
-        {
-            get
-            {
-                return this.helpUrl;
-            }
-        }
+        public string HelpUrl { get; }
     }
 }
+
 #endif
