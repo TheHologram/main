@@ -7,16 +7,18 @@
     <OutputType>Library</OutputType>
     <RootNamespace>IronPythonTest</RootNamespace>
     <AssemblyName>IronPythonTest</AssemblyName>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'FxCop|AnyCPU' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'v2Debug|AnyCPU' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'v2Release|AnyCPU' ">
+    <ReferencedPlatform>V4</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'v2Release' or '$(Configuration)' == 'v2Debug'">V2</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'v45Release' or '$(Configuration)' == 'v45Debug'">V45</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Win8Release' or '$(Configuration)' == 'Win8Debug'">Win8</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'WP7Release' or '$(Configuration)' == 'WP7Debug'">WP75</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Silverlight4Release' or '$(Configuration)' == 'Silverlight4Debug'">Silverlight4</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Silverlight5Release' or '$(Configuration)' == 'Silverlight5Debug'">Silverlight5</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'AndroidRelease' or '$(Configuration)' == 'AndroidDebug'">Android</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity4Release' or '$(Configuration)' == 'Unity4Debug'">Unity4</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity5Release' or '$(Configuration)' == 'Unity5Debug'">Unity5</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity2017Release' or '$(Configuration)' == 'Unity2017Debug'">Unity2017</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Mono4Release' or '$(Configuration)' == 'Mono4Debug'">Mono4</ReferencedPlatform>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -24,7 +26,6 @@
     <Compile Include="ExtensionMethodTest.cs" />
     <Compile Include="LightExceptionTests.cs" />
     <Compile Include="MemberOverloadTest.cs" />
-    <Compile Include="BinderTest.cs" />
     <Compile Include="BindTest.cs" />
     <Compile Include="ClrType.cs" />
     <Compile Include="Cmplx.cs" />
@@ -32,10 +33,7 @@
     <Compile Include="DefaultParams.cs" />
     <Compile Include="DelegateTest.cs" />
     <Compile Include="DeTest.cs" />
-    <Compile Include="DynamicRegressions.cs" />
     <Compile Include="MemberMappingTests.cs" />
-    <Compile Include="Stress\Engine.cs" />
-    <Compile Include="EngineTest.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="ExceptionConverter.cs" />
@@ -55,6 +53,14 @@
     <Compile Include="StringDictionaryStorage.cs" />
     <Compile Include="TestBuiltinModule.cs" />
     <Compile Include="TypeDescriptor.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(ReferencedPlatform)' != 'Mono4'">
+    <Compile Include="Stress\Engine.cs" />
+    <Compile Include="BinderTest.cs" />
+    <Compile Include="DynamicRegressions.cs" />
+    <Compile Include="EngineTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup Condition=" '$(IsFullFramework)' == 'true' and '$(TargetFrameworkVersion)' != 'v3.5'">

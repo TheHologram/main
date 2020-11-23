@@ -87,12 +87,12 @@ namespace System.Reflection {
     }
 }
 #elif !CLR45
+#if !FEATURE_RUNTIME_REFLECT_EXTN
 namespace System.Reflection {
     public static class RuntimeReflectionExtensions {
         public static MethodInfo GetRuntimeBaseDefinition(this MethodInfo method) {
             return method.GetBaseDefinition();
         }
-
         public static IEnumerable<MethodInfo> GetRuntimeMethods(this Type type) {
             return type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
         }
@@ -110,6 +110,7 @@ namespace System.Reflection {
 #endif
     }
 }
+#endif
 #endif
 
 namespace Microsoft.Scripting.Utils {
@@ -398,9 +399,15 @@ namespace Microsoft.Scripting.Utils {
 
         private static bool IncludeMethod(MethodInfo member, Type reflectedType, HashSet<MethodInfo> baseDefinitions, bool flattenHierarchy) {
             if (member.IsVirtual) {
+#if !FEATURE_GET_RUNTIME_BASE
                 if (baseDefinitions.Add(RuntimeReflectionExtensions.GetRuntimeBaseDefinition(member))) {
                     return true;
                 }
+#else
+                if (baseDefinitions.Add(GetRuntimeBaseDefinition(member))) {
+                    return true;
+                }
+#endif
             } else if (member.DeclaringType == reflectedType) {
                 return true;
             } else if (!member.IsPrivate && (!member.IsStatic || flattenHierarchy)) {
@@ -454,9 +461,15 @@ namespace Microsoft.Scripting.Utils {
             }
 
             if (virtualAccessor != null) {
+#if !FEATURE_GET_RUNTIME_BASE
                 if (baseDefinitions.Add(RuntimeReflectionExtensions.GetRuntimeBaseDefinition(virtualAccessor))) {
                     return true;
                 }
+#else
+                if (baseDefinitions.Add(GetRuntimeBaseDefinition(virtualAccessor))) {
+                    return true;
+                }
+#endif
             } else if (member.DeclaringType == reflectedType) {
                 return true;
             } else if (!member.IsPrivate() && (!member.IsStatic() || flattenHierarchy)) {
@@ -504,9 +517,15 @@ namespace Microsoft.Scripting.Utils {
             }
 
             if (virtualAccessor != null) {
+#if !FEATURE_GET_RUNTIME_BASE
                 if (baseDefinitions.Add(RuntimeReflectionExtensions.GetRuntimeBaseDefinition(virtualAccessor))) {
                     return true;
                 }
+#else
+                if (baseDefinitions.Add(GetRuntimeBaseDefinition(virtualAccessor))) {
+                    return true;
+                }
+#endif
             } else if (member.DeclaringType == reflectedType) {
                 return true;
             } else if (!member.IsPrivate() && (!member.IsStatic() || flattenHierarchy)) {
@@ -930,7 +949,7 @@ namespace Microsoft.Scripting.Utils {
         public static T GetCustomAttribute<T>(this MemberInfo member, bool inherit = false) where T : Attribute {
             return (T)Attribute.GetCustomAttribute(member, typeof(T), inherit);
         }
-
+#if !FEATURE_CUSTOM_ATTR
         public static IEnumerable<T> GetCustomAttributes<T>(this Assembly assembly, bool inherit = false) where T : Attribute {
             return Attribute.GetCustomAttributes(assembly, typeof(T), inherit).Cast<T>();
         }
@@ -938,6 +957,7 @@ namespace Microsoft.Scripting.Utils {
         public static IEnumerable<T> GetCustomAttributes<T>(this MemberInfo member, bool inherit = false) where T : Attribute {
             return Attribute.GetCustomAttributes(member, typeof(T), inherit).Cast<T>();
         }
+#endif
 #endif
 
         public static MethodInfo GetMethod(this Delegate d) {

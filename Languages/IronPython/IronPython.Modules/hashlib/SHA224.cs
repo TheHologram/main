@@ -25,7 +25,7 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
+#if !FEATURE_CRYPTO_SHA224
 using System.Security.Cryptography;
 
 using IronPython.Runtime;
@@ -95,3 +95,4 @@ namespace Mono.Security.Cryptography {
         }
     }
 }
+#endif

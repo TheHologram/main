@@ -128,7 +128,7 @@ namespace Microsoft.Scripting.Hosting {
             ContractUtils.Requires(_languageSetups.Count > 0, "ScriptRuntimeSetup must have at least one LanguageSetup");
 
             // prepare
-            ReadOnlyCollection<LanguageSetup> setups = new ReadOnlyCollection<LanguageSetup>(ArrayUtils.MakeArray(_languageSetups));
+            var setups = new ReadOnlyCollection<LanguageSetup>(ArrayUtils.MakeArray(_languageSetups));
             var hostArguments = new ReadOnlyCollection<object>(ArrayUtils.MakeArray(_hostArguments));
             var options = new ReadOnlyDictionary<string, object>(new Dictionary<string, object>(_options));            
             var config = new DlrConfiguration(_debugMode, _privateBinding, options);

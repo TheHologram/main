@@ -672,9 +672,29 @@ namespace IronPython.Modules {
                     return dm;
 #endif
                 }
+                
+                private static CallingConventions ConvertConvention(CallingConvention convention) {
+                    switch (convention)
+                    {
+                        case CallingConvention.Cdecl:
+                            return CallingConventions.VarArgs;
+                        case CallingConvention.FastCall:
+                            return CallingConventions.Any;
+                        case CallingConvention.StdCall:
+                            return CallingConventions.Standard;
+                        case CallingConvention.ThisCall:
+                            return CallingConventions.HasThis|CallingConventions.ExplicitThis;
+                        case CallingConvention.Winapi:                        
+                            return CallingConventions.Standard;
+                        default:
+                            return CallingConventions.Standard;
+                    }
+                        
+                }
 
                 private static SignatureHelper GetCalliSignature(CallingConvention convention, ArgumentMarshaller/*!*/[] sig, Type calliRetType) {
-                    SignatureHelper signature = SignatureHelper.GetMethodSigHelper(convention, calliRetType);
+                    //SignatureHelper signature = SignatureHelper.GetMethodSigHelper(convention, calliRetType);                    
+                    SignatureHelper signature = SignatureHelper.GetMethodSigHelper(ConvertConvention(convention), calliRetType);
                     
                     foreach (ArgumentMarshaller argMarshaller in sig) {
                         signature.AddArgument(argMarshaller.NativeType);

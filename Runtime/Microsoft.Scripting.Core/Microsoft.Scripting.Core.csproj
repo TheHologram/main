@@ -11,33 +11,26 @@
     <BaseAddress>855638016</BaseAddress>
     <CodeAnalysisRuleSet>$(AssemblyName).ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>$(SolutionDir)..\bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
+    <ReferencedPlatform>V4</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'v2Release' or '$(Configuration)' == 'v2Debug'">V2</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'v45Release' or '$(Configuration)' == 'v45Debug'">V45</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Win8Release' or '$(Configuration)' == 'Win8Debug'">Win8</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'WP7Release' or '$(Configuration)' == 'WP7Debug'">WP75</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Silverlight4Release' or '$(Configuration)' == 'Silverlight4Debug'">Silverlight4</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Silverlight5Release' or '$(Configuration)' == 'Silverlight5Debug'">Silverlight5</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'AndroidRelease' or '$(Configuration)' == 'AndroidDebug'">Android</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity4Release' or '$(Configuration)' == 'Unity4Debug'">Unity4</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity5Release' or '$(Configuration)' == 'Unity5Debug'">Unity5</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity2017Release' or '$(Configuration)' == 'Unity2017Debug'">Unity2017</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Mono4Release' or '$(Configuration)' == 'Mono4Debug'">Mono4</ReferencedPlatform>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'FxCop|AnyCPU' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'v2Debug|AnyCPU' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'v2Release|AnyCPU' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WP7Debug|AnyCPU' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WP7Release|AnyCPU' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AndroidDebug|AnyCPU' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AndroidRelease|AnyCPU' ">
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Unity4Debug|AnyCPU'">
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Unity4Release|AnyCPU'">
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Unity5Debug|AnyCPU'">
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Unity5Release|AnyCPU'">
-  </PropertyGroup>
+  
   <ItemGroup>
     <Compile Include="..\..\Hosts\Silverlight\SilverlightVersion.cs" Condition=" '$(IsSilverlight)' == 'true' ">
       <Link>Properties\SilverlightVersion.cs</Link>
     </Compile>
+  </ItemGroup>
+  <ItemGroup Condition="'$(ReferencedPlatform)' != 'Mono4'">
     <Compile Include="Actions\CallInfo.cs" />
     <Compile Include="Actions\CallSiteOps.cs" />
     <Compile Include="Actions\IInvokeOnGetBinder.cs" />
@@ -63,39 +56,32 @@
     <Compile Include="Actions\RuleCache.cs" />
     <Compile Include="Actions\SetIndexBinder.cs" />
     <Compile Include="Actions\SetMemberBinder.cs" />
-    <Compile Include="Ast\Expression.DebuggerProxy.cs" />
-    <Compile Include="Ast\IArgumentProvider.cs" />
-    <Compile Include="Ast\ListArgumentProvider.cs" />
     <Compile Include="Actions\UnaryOperationBinder.cs" />
-    <Compile Include="Ast\ExpressionStringBuilder.cs" />
-    <Compile Include="Compiler\BoundConstants.cs" />
-    <Compile Include="Ast\DebugInfoExpression.cs" />
-    <Compile Include="Ast\SymbolDocumentInfo.cs" />
-    <Compile Include="Compiler\DelegateHelpers.cs" />
-    <Compile Include="Compiler\DelegateHelpers.Generated.cs" />
-    <Compile Include="Ast\GotoExpression.cs" />
-    <Compile Include="Compiler\LabelInfo.cs" />
-    <Compile Include="Compiler\AnalyzedTree.cs" />
-    <Compile Include="Compiler\OffsetTrackingILGenerator.cs" />
-    <Compile Include="Compiler\RuntimeVariableList.cs" />
     <Compile Include="Actions\UpdateDelegates.Generated.cs" />
-    <Compile Include="Ast\DynamicExpression.cs" />
     <Compile Include="Ast\BinaryExpression.cs" />
     <Compile Include="Ast\BlockExpression.cs" />
     <Compile Include="Ast\CatchBlock.cs" />
     <Compile Include="Ast\ConditionalExpression.cs" />
     <Compile Include="Ast\ConstantExpression.cs" />
+    <Compile Include="Ast\DebugInfoExpression.cs" />
+    <Compile Include="Ast\DebugViewWriter.cs" />
     <Compile Include="Ast\DefaultExpression.cs" />
+    <Compile Include="Ast\DynamicExpression.cs" />
     <Compile Include="Ast\ElementInit.cs" />
+    <Compile Include="Ast\Expression.DebuggerProxy.cs" />
     <Compile Include="Ast\Expression.cs" />
+    <Compile Include="Ast\ExpressionStringBuilder.cs" />
     <Compile Include="Ast\ExpressionType.cs" />
+    <Compile Include="Ast\ExpressionVisitor.cs" />
+    <Compile Include="Ast\GotoExpression.cs" />
+    <Compile Include="Ast\IArgumentProvider.cs" />
     <Compile Include="Ast\IndexExpression.cs" />
     <Compile Include="Ast\InvocationExpression.cs" />
-    <Compile Include="Ast\LabelTarget.cs" />
     <Compile Include="Ast\LabelExpression.cs" />
+    <Compile Include="Ast\LabelTarget.cs" />
     <Compile Include="Ast\LambdaExpression.cs" />
+    <Compile Include="Ast\ListArgumentProvider.cs" />
     <Compile Include="Ast\ListInitExpression.cs" />
-    <Compile Include="Ast\RuntimeVariablesExpression.cs" />
     <Compile Include="Ast\LoopExpression.cs" />
     <Compile Include="Ast\MemberAssignment.cs" />
     <Compile Include="Ast\MemberBinding.cs" />
@@ -107,21 +93,29 @@
     <Compile Include="Ast\NewArrayExpression.cs" />
     <Compile Include="Ast\NewExpression.cs" />
     <Compile Include="Ast\ParameterExpression.cs" />
+    <Compile Include="Ast\RuntimeVariablesExpression.cs" />
     <Compile Include="Ast\SwitchCase.cs" />
     <Compile Include="Ast\SwitchExpression.cs" />
+    <Compile Include="Ast\SymbolDocumentInfo.cs" />
     <Compile Include="Ast\TryExpression.cs" />
     <Compile Include="Ast\TypeBinaryExpression.cs" />
     <Compile Include="Ast\TypeUtils.cs" />
     <Compile Include="Ast\UnaryExpression.cs" />
+    <Compile Include="Compiler\AnalyzedTree.cs" />
+    <Compile Include="Compiler\AssemblyGen.cs" />
+    <Compile Include="Compiler\BoundConstants.cs" />
     <Compile Include="Compiler\Closure.cs" />
     <Compile Include="Compiler\CompilerScope.Storage.cs" />
     <Compile Include="Compiler\CompilerScope.cs" />
     <Compile Include="Compiler\ConstantCheck.cs" />
+    <Compile Include="Compiler\DebugInfoGenerator.cs" />
+    <Compile Include="Compiler\DelegateHelpers.Generated.cs" />
+    <Compile Include="Compiler\DelegateHelpers.cs" />
     <Compile Include="Compiler\ExpressionQuoter.cs" />
-    <Compile Include="Ast\ExpressionVisitor.cs" />
-    <Compile Include="Ast\DebugViewWriter.cs" />
     <Compile Include="Compiler\HoistedLocals.cs" />
+    <Compile Include="Compiler\ILGen.cs" />
     <Compile Include="Compiler\KeyedQueue.cs" />
+    <Compile Include="Compiler\LabelInfo.cs" />
     <Compile Include="Compiler\LambdaCompiler.Address.cs" />
     <Compile Include="Compiler\LambdaCompiler.Binary.cs" />
     <Compile Include="Compiler\LambdaCompiler.ControlFlow.cs" />
@@ -132,7 +126,8 @@
     <Compile Include="Compiler\LambdaCompiler.Statements.cs" />
     <Compile Include="Compiler\LambdaCompiler.Unary.cs" />
     <Compile Include="Compiler\LambdaCompiler.cs" />
-    <Compile Include="Compiler\DebugInfoGenerator.cs" />
+    <Compile Include="Compiler\OffsetTrackingILGenerator.cs" />
+    <Compile Include="Compiler\RuntimeVariableList.cs" />
     <Compile Include="Compiler\Set.cs" />
     <Compile Include="Compiler\StackSpiller.Bindings.cs" />
     <Compile Include="Compiler\StackSpiller.Generated.cs" />
@@ -141,25 +136,25 @@
     <Compile Include="Compiler\SymbolDocumentGenerator.cs" />
     <Compile Include="Compiler\SymbolGuids.cs" />
     <Compile Include="Compiler\VariableBinder.cs" />
-    <Compile Include="Compiler\AssemblyGen.cs" />
-    <Compile Include="Compiler\ILGen.cs" />
+    <Compile Include="Utils\ReadOnlyCollectionBuilder.cs" />
+    <Compile Include="Utils\ReadOnlyDictionary.cs" />
+    <Compile Include="Utils\TypeExtensions.cs" />
+    <Compile Include="Utils\Helpers.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stubs.cs" />
     <Compile Include="Utils\Action.cs" />
     <Compile Include="Utils\CacheDict.cs" />
     <Compile Include="Utils\CollectionExtensions.cs" />
     <Compile Include="Utils\ContractUtils.cs" />
     <Compile Include="Utils\ExceptionFactory.Generated.cs" />
     <Compile Include="Utils\Function.cs" />
-    <Compile Include="Utils\Helpers.cs" />
     <Compile Include="Utils\IRuntimeVariables.cs" />
-    <Compile Include="Utils\ReadOnlyCollectionBuilder.cs" />
-    <Compile Include="Utils\ReadOnlyDictionary.cs" />
     <Compile Include="Utils\ReferenceEqualityComparer.cs" />
     <Compile Include="Utils\ReflectionUtils.cs" />
     <Compile Include="Utils\TrueReadOnlyCollection.cs" />
-    <Compile Include="Utils\TypeExtensions.cs" />
-    <Compile Include="Stubs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Microsoft.Scripting.Core.ruleset" />

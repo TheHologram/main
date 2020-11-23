@@ -1,4 +1,4 @@
-﻿#if FEATURE_UNITY4 || FEATURE_DEFAULTPARAM
+﻿#if FEATURE_DEFAULTPARAM
 namespace System.Runtime.InteropServices
 {
     using System;
