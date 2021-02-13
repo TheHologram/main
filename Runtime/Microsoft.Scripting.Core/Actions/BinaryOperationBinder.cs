@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-
+#if !USE_SYSTEM_DYNAMICS
 #if !FEATURE_CORE_DLR
 using Microsoft.Scripting.Ast;
 #else
@@ -146,3 +146,5 @@ namespace System.Dynamic {
         }
     }
 }
+
+#endif

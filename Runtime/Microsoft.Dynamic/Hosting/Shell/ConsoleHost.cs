@@ -453,8 +453,9 @@ namespace Microsoft.Scripting.Hosting.Shell {
             Console.WriteLine("{0} {1} on {2}", Engine.Setup.DisplayName, Engine.LanguageVersion, GetRuntime());
         }
 
-        private static string GetRuntime() {
-            Type mono = typeof(object).GetTypeInfo().Assembly.GetType("Mono.Runtime");
+        private static string GetRuntime()
+        {
+            Type mono = TypeUtils.AssemblyGetType(typeof(object).GetTypeInfo().Assembly, "Mono.Runtime");
             return mono != null ?
                 (string)mono.GetMethod("GetDisplayName", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, null)
                 : String.Format(CultureInfo.InvariantCulture, ".NET {0}", Environment.Version);

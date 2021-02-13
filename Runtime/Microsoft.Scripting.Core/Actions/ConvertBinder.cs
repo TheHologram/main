@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-
+#if !USE_SYSTEM_DYNAMICS
 using System.Dynamic.Utils;
 
 namespace System.Dynamic {
@@ -99,3 +99,4 @@ namespace System.Dynamic {
         }
     }
 }
+#endif

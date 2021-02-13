@@ -17,8 +17,13 @@
 
 #if CLR2
 using Microsoft.Scripting.Math;
-#else
+#endif
+
+#if FEATURE_NUMERICS
 using System.Numerics;
+#else
+using Microsoft.Scripting.Math;
+using Complex = Microsoft.Scripting.Math.Complex64;
 #endif
 
 using System;

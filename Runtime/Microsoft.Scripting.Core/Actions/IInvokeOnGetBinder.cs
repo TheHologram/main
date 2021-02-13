@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-
+#if !USE_SYSTEM_DYNAMICS
 namespace System.Dynamic {
     /// <summary>
     /// Represents information about a dynamic get member operation, indicating
@@ -34,3 +34,4 @@ namespace System.Dynamic {
         bool InvokeOnGet { get; }
     }
 }
+#endif

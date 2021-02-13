@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-
+#if !USE_SYSTEM_DYNAMICS
 #if FEATURE_CORE_DLR
 using System.Linq.Expressions;
 #else
@@ -36,3 +36,4 @@ namespace System.Dynamic {
         DynamicMetaObject GetMetaObject(Expression parameter);
     }
 }
+#endif

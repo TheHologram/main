@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-
+#if !USE_SYSTEM_DYNAMICS
 using System.Dynamic.Utils;
 
 namespace System.Dynamic {
@@ -95,3 +95,4 @@ namespace System.Dynamic {
         public abstract DynamicMetaObject FallbackSetIndex(DynamicMetaObject target, DynamicMetaObject[] indexes, DynamicMetaObject value, DynamicMetaObject errorSuggestion);
     }
 }
+#endif

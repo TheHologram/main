@@ -25,6 +25,7 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
+#if False
 #if !FEATURE_CRYPTO_SHA224
 using System.Security.Cryptography;
 
@@ -95,4 +96,5 @@ namespace Mono.Security.Cryptography {
         }
     }
 }
+#endif
 #endif

@@ -22,9 +22,10 @@
     <ReferencedPlatform Condition="'$(Configuration)' == 'Unity4Release' or '$(Configuration)' == 'Unity4Debug'">Unity4</ReferencedPlatform>
     <ReferencedPlatform Condition="'$(Configuration)' == 'Unity5Release' or '$(Configuration)' == 'Unity5Debug'">Unity5</ReferencedPlatform>
     <ReferencedPlatform Condition="'$(Configuration)' == 'Unity2017Release' or '$(Configuration)' == 'Unity2017Debug'">Unity2017</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity2018Release' or '$(Configuration)' == 'Unity2018Debug'">Unity2018</ReferencedPlatform>
+    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity2019Release' or '$(Configuration)' == 'Unity2019Debug'">Unity2019</ReferencedPlatform>
     <ReferencedPlatform Condition="'$(Configuration)' == 'Mono4Release' or '$(Configuration)' == 'Mono4Debug'">Mono4</ReferencedPlatform>
   </PropertyGroup>
-  
   <ItemGroup>
     <Compile Include="..\..\Hosts\Silverlight\SilverlightVersion.cs" Condition=" '$(IsSilverlight)' == 'true' ">
       <Link>Properties\SilverlightVersion.cs</Link>
@@ -34,14 +35,9 @@
     <Compile Include="Actions\CallInfo.cs" />
     <Compile Include="Actions\CallSiteOps.cs" />
     <Compile Include="Actions\IInvokeOnGetBinder.cs" />
-    <Compile Include="Actions\InvokeMemberBinder.cs" />
-    <Compile Include="Actions\BinaryOperationBinder.cs" />
     <Compile Include="Actions\CallSite.cs" />
     <Compile Include="Actions\CallSiteBinder.cs" />
     <Compile Include="Actions\CallSiteHelpers.cs" />
-    <Compile Include="Actions\ConvertBinder.cs" />
-    <Compile Include="Actions\DeleteIndexBinder.cs" />
-    <Compile Include="Actions\DynamicObject.cs" />
     <Compile Include="Actions\ExpandoObject.cs" />
     <Compile Include="Actions\ExpandoClass.cs" />
     <Compile Include="Actions\GetIndexBinder.cs" />
@@ -51,7 +47,6 @@
     <Compile Include="Actions\IDynamicMetaObjectProvider.cs" />
     <Compile Include="Actions\InvokeBinder.cs" />
     <Compile Include="Actions\DynamicMetaObject.cs" />
-    <Compile Include="Actions\DynamicMetaObjectBinder.cs" />
     <Compile Include="Actions\BindingRestrictions.cs" />
     <Compile Include="Actions\RuleCache.cs" />
     <Compile Include="Actions\SetIndexBinder.cs" />
@@ -142,6 +137,12 @@
     <Compile Include="Utils\Helpers.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\BinaryOperationBinder.cs" />
+    <Compile Include="Actions\ConvertBinder.cs" />
+    <Compile Include="Actions\DeleteIndexBinder.cs" />
+    <Compile Include="Actions\DynamicMetaObjectBinder.cs" />
+    <Compile Include="Actions\DynamicObject.cs" />
+    <Compile Include="Actions\InvokeMemberBinder.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stubs.cs" />

@@ -21,7 +21,7 @@ namespace Microsoft.Scripting.Runtime {
     /// It is used by the method binding infrastructure to generate better error 
     /// messages and method selection.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
     public sealed class NotNullAttribute : Attribute {
         public NotNullAttribute() {
         }
@@ -32,7 +32,7 @@ namespace Microsoft.Scripting.Runtime {
     /// It is used by the method binding infrastructure to generate better error 
     /// messages and method selection.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
     public sealed class NotNullItemsAttribute : Attribute {
         public NotNullItemsAttribute() {
         }

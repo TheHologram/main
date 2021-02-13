@@ -49,7 +49,7 @@ namespace Microsoft.Scripting {
     ///     Key: a Value = 2
     ///     Key: b Value = abc
     /// </example>
-    [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
     public sealed class ParamDictionaryAttribute : Attribute {
     }
 }

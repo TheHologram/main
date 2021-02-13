@@ -22,6 +22,9 @@
     <Unity4BuildDir>$(BinDir)\Unity4$(BaseConfiguration)</Unity4BuildDir>
     <Unity5BuildDir>$(BinDir)\Unity5$(BaseConfiguration)</Unity5BuildDir>
     <Unity2017BuildDir>$(BinDir)\Unity2017$(BaseConfiguration)</Unity2017BuildDir>
+    <Unity2018BuildDir>$(BinDir)\Unity2018$(BaseConfiguration)</Unity2018BuildDir>
+    <Unity2019BuildDir>$(BinDir)\Unity2019$(BaseConfiguration)</Unity2019BuildDir>
+    <Mono45EdgeBuildDir>$(BinDir)\Mono45Edge$(BaseConfiguration)</Mono45EdgeBuildDir>
     <Mono4BuildDir>$(BinDir)\Mono4$(BaseConfiguration)</Mono4BuildDir>
     <Silverlight5BuildDir>$(BinDir)\Silverlight5$(BaseConfiguration)</Silverlight5BuildDir>
   </PropertyGroup>
@@ -216,6 +219,24 @@
     <Copy SourceFiles="@(ClrDlrLibs->'$(Unity2017BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2017" Condition="'$(OS)' == 'Windows_NT'" />
     <Copy SourceFiles="@(IronPythonLibs->'$(Unity2017BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2017" Condition="'$(OS)' == 'Windows_NT'"/>
     <Copy SourceFiles="@(IronPythonModules->'$(Unity2017BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2017" Condition="'$(OS)' == 'Windows_NT'"/>
+
+    <!-- Unity2018 -->
+    <Copy SourceFiles="@(DlrLibs->'$(Unity2018BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2018" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(ClrDlrLibs->'$(Unity2018BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2018" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(IronPythonLibs->'$(Unity2018BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2018" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(IronPythonModules->'$(Unity2018BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2018" Condition="'$(OS)' == 'Windows_NT'"/>
+
+      <!-- Unity2019 -->
+    <Copy SourceFiles="@(DlrLibs->'$(Unity2019BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2019" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(ClrDlrLibs->'$(Unity2019BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2019" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(IronPythonLibs->'$(Unity2019BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2019" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(IronPythonModules->'$(Unity2019BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Unity2019" Condition="'$(OS)' == 'Windows_NT'"/>
+
+    <!-- Mono45Edge -->
+    <Copy SourceFiles="@(DlrLibs->'$(Mono45EdgeBuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Mono45Edge" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(ClrDlrLibs->'$(Mono45EdgeBuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Mono45Edge" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(IronPythonLibs->'$(Mono45EdgeBuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Mono45Edge" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(IronPythonModules->'$(Mono45EdgeBuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Mono45Edge" Condition="'$(OS)' == 'Windows_NT'"/>
     
     <!-- Mono4 -->
     <Copy SourceFiles="@(DlrLibs->'$(Mono4BuildDir)\%(Identity)')" DestinationFolder="$(StageDir)\Platforms\Mono4" Condition="'$(OS)' == 'Windows_NT'"/>

@@ -16,7 +16,15 @@ REM msbuild /t:Build /p:ReferencedPlatform=Unity5 /p:Configuration=Unity5Release
 REM xcopy /Y /S /D Util\References\MonoUnity\2017.3.0\*.dll bin\Unity2017Release\
 REM msbuild /t:Build /p:ReferencedPlatform=Unity2017 /p:Configuration=Unity2017Release /p:BaseConfiguration=Release /p:Platform="AnyCPU" /nologo Solutions\Build.IronPython.Unity.proj 
 
-xcopy /Y /S /D Util\References\MonoUnity\4.0.30319.17020\*.dll bin\Mono4Release\
-msbuild /t:Build /p:ReferencedPlatform=Mono4 /p:Configuration=Mono4Release /p:BaseConfiguration=Release /p:Platform="AnyCPU" /nologo Solutions\Build.IronPython.Unity.proj 
+REM xcopy /Y /S /D Util\References\MonoUnity\4.0.30319.17020\*.dll bin\Mono4Release\
+REM msbuild /t:Build /p:ReferencedPlatform=Mono4 /p:Configuration=Mono4Release /p:BaseConfiguration=Release /p:Platform="AnyCPU" /nologo Solutions\Build.IronPython.Unity.proj 
+
+REM mkdir bin\Unity2019Release\
+REM xcopy /Y /S /D Util\References\MonoUnity\2019.4.4\*.dll bin\Unity2019Release\
+REM msbuild /t:Build /p:ReferencedPlatform=Unity2019 /p:Configuration=Unity2019Release /p:BaseConfiguration=Release /p:Platform="AnyCPU" /nologo Solutions\Build.IronPython.Unity.proj 
+
+mkdir bin\Mono45EdgeRelease\
+xcopy /Y /S /D Util\References\MonoUnity\4.5-api\*.dll bin\Unity2019Release\
+msbuild /t:Build /p:ReferencedPlatform=Mono45Edge /p:Configuration=Mono45EdgeRelease /p:BaseConfiguration=Release /p:Platform="AnyCPU" /nologo Solutions\Build.IronPython.Unity.proj 
 
 popd

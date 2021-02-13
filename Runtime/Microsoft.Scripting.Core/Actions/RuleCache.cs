@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-
+#if !USE_SYSTEM_DYNAMICS
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Dynamic.Utils;
@@ -114,3 +114,4 @@ namespace System.Runtime.CompilerServices {
         }
     }
 }
+#endif

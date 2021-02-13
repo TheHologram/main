@@ -203,6 +203,11 @@ namespace IronPython.Runtime.Types {
         }
 #endif
 
+        public static Type GetType(Assembly asm, string name, bool throwOnError = false, bool ignoreCase = true)
+        {
+            return TypeUtils.AssemblyGetType(asm, name, throwOnError, ignoreCase);
+        }
+
         /// <summary>
         /// Loads any available new types from the provided assembly and makes them
         /// available via the GetNewType API.
@@ -210,7 +215,7 @@ namespace IronPython.Runtime.Types {
         public static void LoadNewTypes(Assembly/*!*/ asm) {
             Assert.NotNull(asm);
 
-            Type t = asm.GetType(_constructorTypeName);
+            Type t = GetType(asm, _constructorTypeName);
             if (t == null || !t.GetTypeInfo().IsDefined(typeof(PythonCachedTypeInfoAttribute), false)) {
                 return;
             }

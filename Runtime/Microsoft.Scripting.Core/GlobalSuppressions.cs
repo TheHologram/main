@@ -16,5 +16,5 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope = "member", Target = "Microsoft.Scripting.Ast.Error.#InvalidObjectType(System.Object,System.Object)")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope = "member", Target = "Microsoft.Scripting.Ast.Error.#HomogenousAppDomainRequired()")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope = "member", Target = "Microsoft.Scripting.Ast.Strings.#HomogenousAppDomainRequired")]
-#endif
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Runtime.CompilerServices.StrongBox`1.#System.Runtime.CompilerServices.IStrongBox.Value")]
+#endif

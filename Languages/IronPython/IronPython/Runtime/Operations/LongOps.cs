@@ -254,7 +254,7 @@ namespace IronPython.Runtime.Operations {
             if(y < 0) {
                 return DoubleOps.Power(x.ToFloat64(), y);
             }
-            return x.Power(y);
+            return x.Power((int)y);
         }
 #endif
 

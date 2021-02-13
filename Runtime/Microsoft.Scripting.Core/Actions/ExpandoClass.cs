@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-
+#if !USE_SYSTEM_DYNAMICS
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -181,3 +181,4 @@ namespace System.Dynamic {
         }
     }
 }
+#endif

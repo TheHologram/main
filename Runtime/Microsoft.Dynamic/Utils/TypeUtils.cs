@@ -27,6 +27,25 @@ using Microsoft.Scripting.Runtime;
 
 namespace Microsoft.Scripting.Utils {
     public static class TypeUtils {
+
+        public static Type AssemblyGetType(Assembly asm, string name, bool throwOnError = false, bool ignoreCase = true)
+        {
+            try {
+                var types = asm?.GetTypes();
+                if (types != null)
+                    foreach (var t in types)
+                        if (string.Compare(t.FullName, name, ignoreCase) == 0)
+                            return t;
+            }
+            catch
+            {
+                if (throwOnError)
+                    throw;
+                // ignore
+            }
+            return null;
+        }
+
         public static bool IsNested(this Type t) {
             return t.DeclaringType != null;
         }

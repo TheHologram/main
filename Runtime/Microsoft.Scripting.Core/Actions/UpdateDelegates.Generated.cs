@@ -12,6 +12,7 @@
  *
  *
  * ***************************************************************************/
+#if !USE_SYSTEM_DYNAMICS
 #if !FEATURE_CORE_DLR
 using Microsoft.Scripting.Utils;
 #endif
@@ -2656,3 +2657,4 @@ namespace System.Dynamic {
         #endregion
     }
 }
+#endif

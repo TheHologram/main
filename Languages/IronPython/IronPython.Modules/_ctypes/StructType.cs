@@ -33,8 +33,13 @@ using System.Text;
 #if CLR2
 using Microsoft.Scripting.Math;
 #else
-using System.Numerics;
 using Microsoft.Scripting.Utils;
+#endif
+#if FEATURE_NUMERICS
+using System.Numerics;
+#else
+using Microsoft.Scripting.Math;
+using Complex = Microsoft.Scripting.Math.Complex64;
 #endif
 
 namespace IronPython.Modules {

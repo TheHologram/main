@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-
+#if !USE_SYSTEM_DYNAMICS
 using System.Reflection;
 namespace System.Runtime.CompilerServices {
     /// <summary>
@@ -50,3 +50,4 @@ namespace System.Runtime.CompilerServices {
         }
     }
 }
+#endif

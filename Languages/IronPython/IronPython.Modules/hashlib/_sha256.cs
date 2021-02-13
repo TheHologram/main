@@ -88,7 +88,7 @@ namespace IronPython.Modules {
             }
         }
 
-#if NETSTANDARD
+#if True //NETSTANDARD || FEATURE_CRYPTO_SHA224
         public static Sha256Object sha224(object data) {
             throw new NotImplementedException();
         }

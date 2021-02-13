@@ -128,7 +128,7 @@ namespace Microsoft.Scripting.Generation {
             // 3) Verify inner ring assemblies.
             // 4) Verify outer ring assemblies.
             Assembly core = typeof(Expression).GetTypeInfo().Assembly;
-            Type assemblyGen = core.GetType(typeof(Expression).Namespace + ".Compiler.AssemblyGen");
+            var assemblyGen = TypeUtils.AssemblyGetType(core, typeof(Expression).Namespace + ".Compiler.AssemblyGen");
             //The type may not exist.
             string[] coreAssemblyLocations = null;
             if (assemblyGen != null) {

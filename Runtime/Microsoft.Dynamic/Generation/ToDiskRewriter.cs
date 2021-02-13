@@ -226,7 +226,8 @@ namespace Microsoft.Scripting.Generation {
             var module = delegateType.Module as ModuleBuilder;
 
             if (module == null) {
-                if (delegateType.Module.GetType() == typeof(ModuleBuilder).Assembly.GetType("System.Reflection.Emit.InternalModuleBuilder")) {
+                var type = TypeUtils.AssemblyGetType(typeof(ModuleBuilder).Assembly, "System.Reflection.Emit.InternalModuleBuilder");
+                if (delegateType.Module.GetType() == type) {
                     if ((bool)delegateType.Module.GetType().InvokeMember("IsTransientInternal", BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance, null, delegateType.Module, null)) {
                         return true;
                     }

@@ -16,6 +16,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 using Microsoft.Scripting.Utils;
@@ -48,6 +49,36 @@ namespace Microsoft.Scripting.Runtime {
             _options = options;
         }
 
+        private static Type GetType(Assembly asm, string name, bool throwOnError=false, bool ignoreCase=true)
+        {
+            using (var tw = new StreamWriter(new System.IO.FileStream(@"D:\temp\ironpython.log", FileMode.Append)))
+            {
+                try
+                {
+                    tw.WriteLine("IronPython Report");
+                    tw.WriteLine(name);
+                    tw.WriteLine(asm.FullName);
+
+                    var types = asm?.GetTypes();
+                    tw.WriteLine(types?.Length);
+                    foreach (var t in types)
+                        if (string.Compare(t.FullName, name, ignoreCase) == 0)
+                            return t;
+                    foreach (var t in types)
+                        tw.WriteLine(t.FullName);
+                }
+                catch (Exception ex)
+                {
+                    tw.WriteLine(ex.Message);
+                    tw.WriteLine(ex.StackTrace);
+                    if (throwOnError)
+                        throw;
+                    // ignore
+                }
+            }
+            return null;
+        }
+
         /// <summary>
         /// Must not be called under a lock as it can potentially call a user code.
         /// </summary>
@@ -58,7 +89,7 @@ namespace Microsoft.Scripting.Runtime {
                 // Let assembly load errors bubble out
                 var assembly = domainManager.Platform.LoadAssembly(_providerName.AssemblyName.FullName);
 
-                Type type = assembly.GetType(_providerName.TypeName);
+                Type type = GetType(assembly, _providerName.TypeName);
                 if (type == null) {
                     throw new InvalidOperationException(
                         String.Format(

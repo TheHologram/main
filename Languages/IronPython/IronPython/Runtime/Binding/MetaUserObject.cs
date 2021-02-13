@@ -15,6 +15,8 @@
 
 #if FEATURE_CORE_DLR
 using System.Linq.Expressions;
+#endif
+#if FEATURE_NUMERICS
 using System.Numerics;
 #else
 using Microsoft.Scripting.Ast;

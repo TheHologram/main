@@ -26,7 +26,7 @@ namespace Microsoft.Scripting.Utils {
     /// This class wraps the standard input stream with a buffer that ensures that enough data are read from the underlying stream.
     /// </summary>
     public sealed class ConsoleInputStream : Stream {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
         public static readonly ConsoleInputStream Instance = new ConsoleInputStream();
         
         // we use 0x1000 to be safe (MSVCRT uses this value for stdin stream buffer).
@@ -39,7 +39,7 @@ namespace Microsoft.Scripting.Utils {
         private int _bufferSize;
         
         private ConsoleInputStream() {
-            _input = Console.OpenStandardInput();
+            _input = Console.OpenStandardInput(9000);
         }
 
         public override bool CanRead {
@@ -61,7 +61,7 @@ namespace Microsoft.Scripting.Utils {
                 }
 
                 if (count > 0) {
-                    Debug.Assert(_bufferSize == 0);
+                    //Debug.Assert(_bufferSize == 0);
                     if (count < MinimalBufferSize) {
                         int bytesRead = _input.Read(_buffer, 0, MinimalBufferSize);
                         int bytesToReturn = Math.Min(bytesRead, count);
@@ -105,7 +105,7 @@ namespace Microsoft.Scripting.Utils {
         public override long Seek(long offset, SeekOrigin origin) {
             throw new NotSupportedException();
         }
-
+        
         public override void SetLength(long value) {
             throw new NotSupportedException();
         }

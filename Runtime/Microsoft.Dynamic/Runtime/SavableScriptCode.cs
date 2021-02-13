@@ -183,7 +183,7 @@ namespace Microsoft.Scripting {
             ContractUtils.RequiresNotNull(assembly, "assembly");
 
             // get the type which has our cached code...
-            Type t = assembly.GetType("DLRCachedCode");
+            var t = TypeUtils.AssemblyGetType(assembly, "DLRCachedCode");
             if (t == null) {
                 return new ScriptCode[0];
             }

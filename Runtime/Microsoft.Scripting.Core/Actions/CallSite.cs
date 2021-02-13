@@ -12,7 +12,7 @@
  *
  *
  * ***************************************************************************/
-
+#if !USE_SYSTEM_DYNAMICS
 #if !FEATURE_CORE_DLR
 using Microsoft.Scripting.Ast;
 using Microsoft.Scripting.Ast.Compiler;
@@ -732,3 +732,4 @@ namespace System.Runtime.CompilerServices {
         }
     }
 }
+#endif
