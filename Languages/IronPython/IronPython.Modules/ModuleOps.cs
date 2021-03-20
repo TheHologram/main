@@ -27,7 +27,7 @@ using IronPython.Runtime.Exceptions;
 using IronPython.Runtime.Operations;
 using IronPython.Runtime.Types;
 
-#if CLR2
+#if CLR2 && FEATURE_NUMERICS
 using Microsoft.Scripting.Math;
 #endif
 #if FEATURE_NUMERICS

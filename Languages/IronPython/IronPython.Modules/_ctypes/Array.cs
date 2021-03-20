@@ -15,7 +15,7 @@
 
 #if FEATURE_NATIVE
 
-#if CLR2
+#if CLR2 && FEATURE_NUMERICS
 using Microsoft.Scripting.Math;
 #endif
 

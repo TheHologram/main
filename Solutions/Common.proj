@@ -17,41 +17,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 
     <ConfigurationFlavor>Debug</ConfigurationFlavor>
-    <!--<ConfigurationFlavor Condition="'$(Configuration)' == 'FxCop'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'Release'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'v2Release'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'v45Release'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'Win8Release'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'WP7Release'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'Silverlight4Release'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'Silverlight5Release'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'AndroidRelease'">Release</ConfigurationFlavor>-->
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'Unity4Release'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'Unity5Release'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'Unity2017Release'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'Unity2018Release'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'Unity2019Release'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'Mono4Release'">Release</ConfigurationFlavor>
-    <ConfigurationFlavor Condition="'$(Configuration)' == 'Mono45EdgeRelease'">Release</ConfigurationFlavor>
-    
-    <!-- <ReferencedPlatform>V4</ReferencedPlatform> -->
-    <!--<ReferencedPlatform Condition="'$(Configuration)' == 'v2Release' or '$(Configuration)' == 'v2Debug'">V2</ReferencedPlatform>
-    <ReferencedPlatform Condition="'$(Configuration)' == 'v45Release' or '$(Configuration)' == 'v45Debug'">V45</ReferencedPlatform>
-    <ReferencedPlatform Condition="'$(Configuration)' == 'Win8Release' or '$(Configuration)' == 'Win8Debug'">Win8</ReferencedPlatform>
-    <ReferencedPlatform Condition="'$(Configuration)' == 'WP7Release' or '$(Configuration)' == 'WP7Debug'">WP75</ReferencedPlatform>
-    <ReferencedPlatform Condition="'$(Configuration)' == 'Silverlight4Release' or '$(Configuration)' == 'Silverlight4Debug'">Silverlight4</ReferencedPlatform>
-    <ReferencedPlatform Condition="'$(Configuration)' == 'Silverlight5Release' or '$(Configuration)' == 'Silverlight5Debug'">Silverlight5</ReferencedPlatform>
-    <ReferencedPlatform Condition="'$(Configuration)' == 'AndroidRelease' or '$(Configuration)' == 'AndroidDebug'">Android</ReferencedPlatform>-->
-    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity4Release' or '$(Configuration)' == 'Unity4Debug'">Unity4</ReferencedPlatform>
-    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity5Release' or '$(Configuration)' == 'Unity5Debug'">Unity5</ReferencedPlatform>
-    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity2017Release' or '$(Configuration)' == 'Unity2017Debug'">Unity2017</ReferencedPlatform>
-    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity2018Release' or '$(Configuration)' == 'Unity2018Debug'">Unity2018</ReferencedPlatform>
-    <ReferencedPlatform Condition="'$(Configuration)' == 'Unity2019Release' or '$(Configuration)' == 'Unity2019Debug'">Unity2019</ReferencedPlatform>
-    <ReferencedPlatform Condition="'$(Configuration)' == 'Mono4Release' or '$(Configuration)' == 'Mono4Debug'">Mono4</ReferencedPlatform>
-    <ReferencedPlatform Condition="'$(Configuration)' == 'Mono45EdgeRelease' or '$(Configuration)' == 'Mono45EdgeDebug'">Mono45Edge</ReferencedPlatform>        
-    <!--<Configuration>Mono45EdgeRelease</Configuration>-->
-    <!--<ReferencedPlatform>Mono45Edge</ReferencedPlatform>-->        
+    <ConfigurationFlavor Condition="$(Configuration.EndsWith('Release'))">Release</ConfigurationFlavor>
+
+    <ReferencedPlatform Condition="$(Configuration.StartsWith('Unity4'))">Unity4</ReferencedPlatform>
+    <ReferencedPlatform Condition="$(Configuration.StartsWith('Unity5'))">Unity5</ReferencedPlatform>
+    <ReferencedPlatform Condition="$(Configuration.StartsWith('Unity2017'))">Unity2017</ReferencedPlatform>
+    <ReferencedPlatform Condition="$(Configuration.StartsWith('Unity2018'))">Unity2018</ReferencedPlatform>
+    <ReferencedPlatform Condition="$(Configuration.StartsWith('Unity2019'))">Unity2019</ReferencedPlatform>
+    <ReferencedPlatform Condition="$(Configuration.StartsWith('Unity2019Edge'))">Unity2019Edge</ReferencedPlatform>
   </PropertyGroup>
+  
   <PropertyGroup>
         <NoStdLib>true</NoStdLib>
         <NoCompilerStandardLib>true</NoCompilerStandardLib>
@@ -142,8 +117,9 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(ReferencedPlatform)' == 'Unity2019'">
+    <FrameworkReferences Condition="'$(FrameworkReferences)' == ''">$(SolutionDir)..\Util\References\MonoUnity\2019.1.12</FrameworkReferences>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <Features>FEATURE_CUSTOM_MODIFIERS;FEATURE_NATIVE;FEATURE_DEFAULT_PARAMETER_VALUE;FEATURE_CRYPTOGRAPHY;FEATURE_SYNC_SOCKETS;FEATURE_ASSEMBLY_RESOLVE;FEATURE_CUSTOM_TYPE_DESCRIPTOR;FEATURE_ENCODING;FEATURE_DBNULL;FEATURE_FILESYSTEM;FEATURE_THREAD;FEATURE_PROCESS;FEATURE_STACK_TRACE;FEATURE_TYPECONVERTER;FEATURE_PDBEMIT;FEATURE_COM;FEATURE_FULL_CONSOLE;FEATURE_BASIC_CONSOLE;FEATURE_SERIALIZATION;FEATURE_REFEMIT;FEATURE_COMPRESSION;FEATURE_WARNING_EXCEPTION;FEATURE_APTCA;FEATURE_WIN32EXCEPTION;FEATURE_ASSEMBLY_LOCATION;FEATURE_ENUM_NAMES_VALUES;FEATURE_OS_SERVICEPACK;FEATURE_APPLICATIONEXCEPTION;FEATURE_STOPWATCH;FEATURE_APARTMENTSTATE;FEATURE_GETINVALIDFILENAMECHARS;FEATURE_LOADWITHPARTIALNAME;FEATURE_DRIVENOTFOUNDEXCEPTION;FEATURE_ASSEMBLY_CODEBASE;FEATURE_FULL_NET;FEATURE_FULL_CRYPTO;FEATURE_ICLONEABLE;FEATURE_ANSICP;FEATURE_TIMEZONE;FEATURE_SORTKEY;FEATURE_UNITY4;FEATURE_REMOTING;USE_SYSTEM_DYNAMICS;FEATURE_CORE_DLR;FEATURE_VALUE_EQUALITY</Features>
+    <Features>FEATURE_CUSTOM_MODIFIERS;FEATURE_NATIVE;FEATURE_DEFAULT_PARAMETER_VALUE;FEATURE_CRYPTOGRAPHY;FEATURE_SYNC_SOCKETS;FEATURE_ASSEMBLY_RESOLVE;FEATURE_CUSTOM_TYPE_DESCRIPTOR;FEATURE_ENCODING;FEATURE_DBNULL;FEATURE_FILESYSTEM;FEATURE_THREAD;FEATURE_PROCESS;FEATURE_STACK_TRACE;FEATURE_TYPECONVERTER;FEATURE_PDBEMIT;FEATURE_COM;FEATURE_FULL_CONSOLE;FEATURE_BASIC_CONSOLE;FEATURE_SERIALIZATION;FEATURE_REFEMIT;FEATURE_COMPRESSION;FEATURE_WARNING_EXCEPTION;FEATURE_APTCA;FEATURE_WIN32EXCEPTION;FEATURE_ASSEMBLY_LOCATION;FEATURE_ENUM_NAMES_VALUES;FEATURE_OS_SERVICEPACK;FEATURE_APPLICATIONEXCEPTION;FEATURE_STOPWATCH;FEATURE_APARTMENTSTATE;FEATURE_GETINVALIDFILENAMECHARS;FEATURE_LOADWITHPARTIALNAME;FEATURE_DRIVENOTFOUNDEXCEPTION;FEATURE_ASSEMBLY_CODEBASE;FEATURE_FULL_NET;FEATURE_FULL_CRYPTO;FEATURE_ICLONEABLE;FEATURE_ANSICP;FEATURE_TIMEZONE;FEATURE_SORTKEY;FEATURE_UNITY4;FEATURE_REMOTING;USE_SYSTEM_DYNAMICS;FEATURE_CORE_DLR;FEATURE_VALUE_EQUALITY;FEATURE_TYPE_INFO;FEATURE_READONLY_DICTIONARY;FEATURE_GET_METHOD_INFO;FEATURE_DYNAMIC_EXPRESSION_VISITOR;FEATURE_RUNTIME_REFLECT_EXTN;FEATURE_CUSTOM_ATTR;FEATURE_NUMERICS</Features>
     <!--<Features>FEATURE_CUSTOM_MODIFIERS;FEATURE_NATIVE;FEATURE_DEFAULT_PARAMETER_VALUE;FEATURE_CRYPTOGRAPHY;FEATURE_SYNC_SOCKETS;FEATURE_ASSEMBLY_RESOLVE;FEATURE_CUSTOM_TYPE_DESCRIPTOR;FEATURE_ENCODING;FEATURE_DBNULL;FEATURE_FILESYSTEM;FEATURE_THREAD;FEATURE_PROCESS;FEATURE_STACK_TRACE;FEATURE_TYPECONVERTER;FEATURE_PDBEMIT;FEATURE_FULL_CONSOLE;FEATURE_SERIALIZATION;FEATURE_REFEMIT;FEATURE_COMPRESSION;FEATURE_WARNING_EXCEPTION;FEATURE_APTCA;FEATURE_WIN32EXCEPTION;FEATURE_ASSEMBLY_LOCATION;FEATURE_ENUM_NAMES_VALUES;FEATURE_OS_SERVICEPACK;FEATURE_APPLICATIONEXCEPTION;FEATURE_STOPWATCH;FEATURE_APARTMENTSTATE;FEATURE_GETINVALIDFILENAMECHARS;FEATURE_LOADWITHPARTIALNAME;FEATURE_DRIVENOTFOUNDEXCEPTION;FEATURE_ASSEMBLY_CODEBASE;FEATURE_FULL_NET;FEATURE_FULL_CRYPTO;FEATURE_ICLONEABLE;FEATURE_ANSICP;FEATURE_TIMEZONE;FEATURE_SORTKEY;FEATURE_TYPE_INFO;FEATURE_READONLY_DICTIONARY;FEATURE_GET_METHOD_INFO;FEATURE_DYNAMIC_EXPRESSION_VISITOR;FEATURE_ASSEMBLYBUILDER_DEFINEDYNAMICASSEMBLY;FEATURE_RUNTIME_REFLECT_EXTN;FEATURE_VALUE_EQUALITY;FEATURE_NUMERICS;FEATURE_CUSTOM_ATTR</Features>-->
     <PlatformSymbols>CLR4</PlatformSymbols>
     <IsSilverlight>false</IsSilverlight>
@@ -328,65 +304,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup Condition="'$(ReferencedPlatform)' == 'WP75'">
-    <Reference Include="mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-      <SpecificVersion>True</SpecificVersion>
-      <HintPath>$(FrameworkReferences)\mscorlib.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="mscorlib.Extensions, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-      <SpecificVersion>True</SpecificVersion>
-      <HintPath>$(FrameworkReferences)\mscorlib.Extensions.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-      <SpecificVersion>True</SpecificVersion>
-      <HintPath>$(FrameworkReferences)\System.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Core, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-      <SpecificVersion>True</SpecificVersion>
-      <HintPath>$(FrameworkReferences)\System.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Net, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(FrameworkReferences)\System.Net.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Phone, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(FrameworkReferences)\Microsoft.Phone.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup Condition="'$(ReferencedPlatform)' == 'Android'">
-    <Reference Include="mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-      <SpecificVersion>True</SpecificVersion>
-      <HintPath>$(FrameworkReferences)\mscorlib.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-      <SpecificVersion>True</SpecificVersion>
-      <HintPath>$(FrameworkReferences)\System.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Core, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-      <SpecificVersion>True</SpecificVersion>
-      <HintPath>$(FrameworkReferences)\System.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <!--<Reference Include="System.Numerics, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(FrameworkReferences)\System.Numerics.dll</HintPath>
-      <Private>False</Private>
-    </Reference>-->
-    <!-- <Reference Include="Mono.Security, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756"> -->
-      <!-- <SpecificVersion>False</SpecificVersion> -->
-      <!-- <HintPath>$(FrameworkReferences)\Mono.Security.dll</HintPath> -->
-      <!-- <Private>False</Private> -->
-    <!-- </Reference> -->
-  </ItemGroup> 
   <PropertyGroup Condition="'$(ReferencedPlatform)' == 'Unity4'">
     <FrameworkPathOverride>$(FrameworkReferences)</FrameworkPathOverride>
   </PropertyGroup>
@@ -603,6 +520,11 @@
           <HintPath>$(FrameworkReferences)\System.Xml.dll</HintPath>
           <Private>False</Private>
       </Reference>
+    <Reference Include="System.Numerics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(FrameworkReferences)\System.Numerics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
 
     <PropertyGroup Condition="'$(ReferencedPlatform)' == 'Mono4'">

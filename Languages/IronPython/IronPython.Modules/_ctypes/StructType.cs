@@ -38,7 +38,9 @@ using Microsoft.Scripting.Utils;
 #if FEATURE_NUMERICS
 using System.Numerics;
 #else
+#if !CLR2
 using Microsoft.Scripting.Math;
+#endif
 using Complex = Microsoft.Scripting.Math.Complex64;
 #endif
 

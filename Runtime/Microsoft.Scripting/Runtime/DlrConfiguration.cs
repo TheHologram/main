@@ -51,30 +51,18 @@ namespace Microsoft.Scripting.Runtime {
 
         private static Type GetType(Assembly asm, string name, bool throwOnError=false, bool ignoreCase=true)
         {
-            using (var tw = new StreamWriter(new System.IO.FileStream(@"D:\temp\ironpython.log", FileMode.Append)))
+            try
             {
-                try
-                {
-                    tw.WriteLine("IronPython Report");
-                    tw.WriteLine(name);
-                    tw.WriteLine(asm.FullName);
-
-                    var types = asm?.GetTypes();
-                    tw.WriteLine(types?.Length);
-                    foreach (var t in types)
-                        if (string.Compare(t.FullName, name, ignoreCase) == 0)
-                            return t;
-                    foreach (var t in types)
-                        tw.WriteLine(t.FullName);
-                }
-                catch (Exception ex)
-                {
-                    tw.WriteLine(ex.Message);
-                    tw.WriteLine(ex.StackTrace);
-                    if (throwOnError)
-                        throw;
-                    // ignore
-                }
+                var types = asm?.GetTypes();
+                foreach (var t in types)
+                    if (string.Compare(t.FullName, name, ignoreCase) == 0)
+                        return t;
+            }
+            catch
+            {
+                if (throwOnError)
+                    throw;
+                // ignore
             }
             return null;
         }
